@@ -16,6 +16,7 @@
 		AA23DD4E20E0CF1300313CAC /* TwoZeroFourEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */; };
 		AA23DD5920E0E6C000313CAC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5820E0E6C000313CAC /* README.md */; };
 		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
+		AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD5C20E1057000313CAC /* screenshot-2048.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		AA23DD4F20E0CF1300313CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA23DD5820E0E6C000313CAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEight.swift; sourceTree = "<group>"; };
+		AA23DD5C20E1057000313CAC /* screenshot-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-2048.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		AA23DD2A20E0CF1200313CAC = {
 			isa = PBXGroup;
 			children = (
+				AA23DD5C20E1057000313CAC /* screenshot-2048.png */,
 				AA23DD5820E0E6C000313CAC /* README.md */,
 				AA23DD3520E0CF1300313CAC /* TwoZeroFourEight */,
 				AA23DD4C20E0CF1300313CAC /* TwoZeroFourEightTests */,
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA23DD3920E0CF1300313CAC /* art.scnassets in Resources */,
+				AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
 				AA23DD3E20E0CF1300313CAC /* Main.storyboard in Resources */,
