@@ -15,6 +15,10 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Create new Game engine
+        let tzfe = TwoZeroFourEight()
+        print(tzfe.toString())
+        
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
@@ -102,7 +106,7 @@ class GameViewController: UIViewController {
     }
     
     override func shouldAutorotate() -> Bool {
-        return true
+        return false
     }
     
     override func prefersStatusBarHidden() -> Bool {
