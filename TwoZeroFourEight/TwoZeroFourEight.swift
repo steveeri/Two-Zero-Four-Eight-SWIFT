@@ -14,8 +14,7 @@ public class TwoZeroFourEight {
     var maxTile = 0
     var transitions = [Transition]()
 
-    //private var tiles = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    private var tiles = [Int]()
+    private var tiles = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     public let TARGET = 2048
     private let GRID_CNT = 16
@@ -33,11 +32,6 @@ public class TwoZeroFourEight {
 
     init () {
         print("Inside init on TZFE\n")
-        var i = 0
-        while (i < GRID_CNT) {
-            tiles.append(0)
-            i += 1
-        }
         self.createNewTransitions()
         self.addNewTile()
         self.addNewTile()
@@ -49,10 +43,8 @@ public class TwoZeroFourEight {
 
     func rePlot() {
         self.createNewTransitions()
-        var i = 0
-        while (i < GRID_CNT) {
+        for i in 0..<GRID_CNT {
             self.transitions.append(Transition(action: Actions.REFRESH, value: tiles[i], posFinal: i))
-            i += 1
         }
     }
 
@@ -61,14 +53,11 @@ public class TwoZeroFourEight {
 
         //TODO ramdom is crap in swift... have to use old c libraries.  Where is Java :( new Random(2) )
         //print("\(random()) \(random() % 2)\n")
-        let value = ((random() % 2) + 1) * 2
-        let pos = random() % numEmpty
-        //let value = 2
-        //let pos = 4
+        let value = Int((arc4random_uniform(2) + 1) * 2)
+        let pos = Int(arc4random_uniform(UInt32(numEmpty)))
         var blanksFound = 0
 
-        var i = 0
-        while (i < GRID_CNT) {
+        for i in 0..<GRID_CNT {
             if (tiles[i] == BLANK) {
                 if (blanksFound == pos) {
                     tiles[i] = value
@@ -79,7 +68,6 @@ public class TwoZeroFourEight {
                 }
                 blanksFound += 1
             }
-            i += 1
         }
     }
 
@@ -93,20 +81,16 @@ public class TwoZeroFourEight {
 
         // check left-right for compact moves remaining.
         var arrLimit = GRID_CNT - COL_CNT
-        var i = 0
-        while (i < arrLimit) {
+        for i in 0..<arrLimit {
             if (tiles[i] == tiles[i + COL_CNT]) { return true }
-            i += 1
         }
 
         // check up-down for compact moves remaining.
         arrLimit = GRID_CNT - 1
-        i = 0
-        while (i < arrLimit) {
+        for i in 0..<arrLimit {
             if ((i + 1) % ROW_CNT > 0) {
                 if (tiles[i] == tiles[i + 1]) { return true }
             }
-            i += 1
         }
         return false
     }
@@ -117,8 +101,7 @@ public class TwoZeroFourEight {
         var val1 = tiles[index1]
         var tmpI = index1
 
-        var j = 1
-        while (j < COL_CNT) {
+        for j in 0..<COL_CNT {
             var val2 = BLANK
             var tmpJ = BLANK
             switch (j) {
@@ -147,7 +130,6 @@ public class TwoZeroFourEight {
                 val1 = BLANK
                 tmpI = tmpJ
             }
-            j += 1
         }
         return moved
     }
@@ -188,8 +170,7 @@ public class TwoZeroFourEight {
 
         var compacted = false
 
-        var j = 1
-        while (j < COL_CNT) {
+        for j in 0..<COL_CNT {
             var val1 = BLANK
             var val2 = BLANK
             var tmpI = BLANK
@@ -226,7 +207,6 @@ public class TwoZeroFourEight {
                 transitions.append(Transition(action: Actions.COMPACT, value: tiles[tmpI], posStart: tmpJ, posFinal: tmpI))
                 transitions.append(Transition(action: Actions.BLANK, value: BLANK, posFinal: tmpJ))
             }
-            j += 1
         }
         return compacted
     }
@@ -301,6 +281,7 @@ public class TwoZeroFourEight {
         return (str)
     }
 
+    
     class Transition {
 
         var type: Actions
