@@ -51,8 +51,6 @@ public class TwoZeroFourEight {
     internal func addNewTile() {
         if (numEmpty == 0) { return }
 
-        //TODO ramdom is crap in swift... have to use old c libraries.  Where is Java :( new Random(2) )
-        //print("\(random()) \(random() % 2)\n")
         let value = Int((arc4random_uniform(2) + 1) * 2)
         let pos = Int(arc4random_uniform(UInt32(numEmpty)))
         var blanksFound = 0
