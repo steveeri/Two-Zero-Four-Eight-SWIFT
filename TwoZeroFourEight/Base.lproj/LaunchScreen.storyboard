@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,40 +16,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summerland_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bxO-js-aM1">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="bxO-js-aM1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3YO-c4-yL4"/>
-                            <constraint firstItem="bxO-js-aM1" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="211" id="Js8-vU-RdA"/>
-                            <constraint firstItem="bxO-js-aM1" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="34" id="pwM-g2-Ie7"/>
-                            <constraint firstItem="bxO-js-aM1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="xW2-ql-UEF"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="bxO-js-aM1"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="3YO-c4-yL4"/>
-                                <exclude reference="Js8-vU-RdA"/>
-                                <exclude reference="pwM-g2-Ie7"/>
-                                <exclude reference="xW2-ql-UEF"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="bxO-js-aM1"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="3YO-c4-yL4"/>
-                                <include reference="Js8-vU-RdA"/>
-                                <include reference="pwM-g2-Ie7"/>
-                                <include reference="xW2-ql-UEF"/>
-                            </mask>
-                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -62,7 +27,4 @@
             <point key="canvasLocation" x="52.5" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="summerland_logo.png" width="485" height="316"/>
-    </resources>
 </document>

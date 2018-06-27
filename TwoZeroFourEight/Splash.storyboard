@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zgG-mO-uDK">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash Controller-->
+        <scene sceneID="rYP-3J-ltk">
+            <objects>
+                <viewController id="zgG-mO-uDK" customClass="SplashController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0lV-bc-xLK"/>
+                        <viewControllerLayoutGuide type="bottom" id="dgu-WT-4DO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DM2-EV-6yV">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summerland_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="jrN-Lr-tjb">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="153" id="7PG-MR-X9F"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7PG-MR-X9F"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="7PG-MR-X9F"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-uA-Ovv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="5ph-JN-9hy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Tga-L0-rs0"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="UTt-h4-iXM"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="Wkx-eP-tSa"/>
+                                    <constraint firstAttribute="height" constant="40" id="Zn0-vd-BVR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Play 2048">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5ph-JN-9hy"/>
+                                        <exclude reference="Tga-L0-rs0"/>
+                                        <exclude reference="UTt-h4-iXM"/>
+                                        <exclude reference="Wkx-eP-tSa"/>
+                                        <exclude reference="Zn0-vd-BVR"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="5ph-JN-9hy"/>
+                                        <include reference="Tga-L0-rs0"/>
+                                        <exclude reference="UTt-h4-iXM"/>
+                                        <include reference="Wkx-eP-tSa"/>
+                                        <include reference="Zn0-vd-BVR"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="startGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="cDK-L0-Xq6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-he-gyH" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="190" height="40"/>
+                                <color key="backgroundColor" red="0.91809219121932983" green="0.51543110609054565" blue="0.27315425872802734" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ydd-wp-3z6"/>
+                                    <constraint firstAttribute="width" constant="190" id="oA8-17-KLs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Quit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ydd-wp-3z6"/>
+                                        <exclude reference="oA8-17-KLs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Ydd-wp-3z6"/>
+                                        <include reference="oA8-17-KLs"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="quitGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="2GZ-j3-Mig"/>
+                                    <action selector="startGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="s1K-JD-Ngd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dgu-WT-4DO" firstAttribute="top" secondItem="iuM-he-gyH" secondAttribute="bottom" constant="96" id="4eR-ZL-b6M"/>
+                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="top" secondItem="0lV-bc-xLK" secondAttribute="bottom" constant="124" id="PdK-ye-peE">
+                                <variation key="widthClass=compact" constant="84"/>
+                            </constraint>
+                            <constraint firstItem="iuM-he-gyH" firstAttribute="centerX" secondItem="DM2-EV-6yV" secondAttribute="centerX" id="SvQ-IH-J2c"/>
+                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="centerX" secondItem="DM2-EV-6yV" secondAttribute="centerX" id="ZLk-j8-jee"/>
+                            <constraint firstItem="iuM-he-gyH" firstAttribute="top" secondItem="cFn-uA-Ovv" secondAttribute="bottom" constant="57" id="olO-EI-cJd"/>
+                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leadingMargin" constant="60" id="rSQ-jF-gpw"/>
+                            <constraint firstItem="dgu-WT-4DO" firstAttribute="top" secondItem="jrN-Lr-tjb" secondAttribute="bottom" constant="236" id="y70-rp-QR3"/>
+                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="centerX" secondItem="cFn-uA-Ovv" secondAttribute="centerX" id="yh0-Eb-pJH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jrN-Lr-tjb"/>
+                                <exclude reference="cFn-uA-Ovv"/>
+                                <exclude reference="iuM-he-gyH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="PdK-ye-peE"/>
+                                <exclude reference="ZLk-j8-jee"/>
+                                <exclude reference="rSQ-jF-gpw"/>
+                                <exclude reference="yh0-Eb-pJH"/>
+                                <exclude reference="SvQ-IH-J2c"/>
+                                <exclude reference="olO-EI-cJd"/>
+                                <exclude reference="4eR-ZL-b6M"/>
+                                <exclude reference="y70-rp-QR3"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="jrN-Lr-tjb"/>
+                                <include reference="cFn-uA-Ovv"/>
+                                <include reference="iuM-he-gyH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="PdK-ye-peE"/>
+                                <include reference="ZLk-j8-jee"/>
+                                <include reference="rSQ-jF-gpw"/>
+                                <include reference="yh0-Eb-pJH"/>
+                                <include reference="SvQ-IH-J2c"/>
+                                <include reference="olO-EI-cJd"/>
+                                <include reference="4eR-ZL-b6M"/>
+                                <exclude reference="y70-rp-QR3"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="startGameTapped" destination="cFn-uA-Ovv" id="liY-Rm-RrY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76Q-hN-dNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-568.5" y="-231"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="summerland_logo.png" width="485" height="316"/>
+    </resources>
+</document>
