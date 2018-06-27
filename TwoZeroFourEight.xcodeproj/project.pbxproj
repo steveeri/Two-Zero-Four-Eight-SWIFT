@@ -16,6 +16,10 @@
 		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
 		AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD5C20E1057000313CAC /* screenshot-2048.png */; };
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
+		AAFF906820E3779A00125B2F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906720E3779A00125B2F /* art.scnassets */; };
+		AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF906920E39E7100125B2F /* SSRoundedButton.swift */; };
+		AAFF906C20E3C0A200125B2F /* TwoZeroFourEight in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906B20E3C0A200125B2F /* TwoZeroFourEight */; };
+		AAFF906E20E3C48000125B2F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906D20E3C48000125B2F /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,10 @@
 		AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEight.swift; sourceTree = "<group>"; };
 		AA23DD5C20E1057000313CAC /* screenshot-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-2048.png"; sourceTree = "<group>"; };
 		AAF75BB720E25F8200433928 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		AAFF906720E3779A00125B2F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		AAFF906920E39E7100125B2F /* SSRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRoundedButton.swift; sourceTree = "<group>"; };
+		AAFF906B20E3C0A200125B2F /* TwoZeroFourEight */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TwoZeroFourEight; sourceTree = "<group>"; };
+		AAFF906D20E3C48000125B2F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,10 +95,14 @@
 			children = (
 				AA23DD3620E0CF1300313CAC /* AppDelegate.swift */,
 				AAF75BB720E25F8200433928 /* GameViewController.swift */,
+				AAFF906920E39E7100125B2F /* SSRoundedButton.swift */,
+				AAFF906D20E3C48000125B2F /* .gitignore */,
+				AAFF906B20E3C0A200125B2F /* TwoZeroFourEight */,
 				AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */,
-				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
 				AA23DD3F20E0CF1300313CAC /* Assets.xcassets */,
+				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
 				AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */,
+				AAFF906720E3779A00125B2F /* art.scnassets */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
 			);
 			path = TwoZeroFourEight;
@@ -155,6 +167,7 @@
 				TargetAttributes = {
 					AA23DD3220E0CF1200313CAC = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DMQD835NAX;
 					};
 					AA23DD4820E0CF1300313CAC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -187,7 +200,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */,
+				AAFF906E20E3C48000125B2F /* .gitignore in Resources */,
+				AAFF906C20E3C0A200125B2F /* TwoZeroFourEight in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,
+				AAFF906820E3779A00125B2F /* art.scnassets in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
 				AA23DD3E20E0CF1300313CAC /* Main.storyboard in Resources */,
 			);
@@ -208,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */,
+				AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */,
 				AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */,
 				AA23DD5920E0E6C000313CAC /* README.md in Sources */,
 				AA23DD3720E0CF1300313CAC /* AppDelegate.swift in Sources */,
@@ -339,11 +356,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TwoZeroFourEight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.summerland.TwoZeroFourEight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -351,11 +371,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TwoZeroFourEight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.summerland.TwoZeroFourEight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

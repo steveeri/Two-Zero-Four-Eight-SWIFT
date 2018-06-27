@@ -1,11 +1,5 @@
 ﻿import Foundation
 
-#if os(Linux)
-import Glibc
-#else
-import Darwin.C
-#endif
-
 
 public class TwoZeroFourEight {
 
@@ -31,7 +25,7 @@ public class TwoZeroFourEight {
     }
 
     init () {
-        print("Inside init on TZFE\n")
+        //print("Inside init on TZFE\n")
         self.createNewTransitions()
         self.addNewTile()
         self.addNewTile()
@@ -44,7 +38,7 @@ public class TwoZeroFourEight {
     func rePlot() {
         self.createNewTransitions()
         for i in 0..<GRID_CNT {
-            self.transitions.append(Transition(action: Actions.REFRESH, value: tiles[i], posFinal: i))
+            self.transitions.append(Transition(Actions.REFRESH, tiles[i], i))
         }
     }
 
@@ -61,7 +55,7 @@ public class TwoZeroFourEight {
                     tiles[i] = value
                     if (value > maxTile) { maxTile = value }
                     numEmpty -= 1
-                    transitions.append(Transition(action: Actions.ADD_NEW, value: value, posFinal: i))
+                    transitions.append(Transition(Actions.ADD_NEW, value, i))
                     return
                 }
                 blanksFound += 1
@@ -93,7 +87,7 @@ public class TwoZeroFourEight {
         return false
     }
 
-    private func slideTileRowOrColumn(index1: Int, index2: Int, index3: Int, index4: Int) -> Bool {
+    private func slideTileRowOrColumn(index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
 
         var moved = false
         var val1 = tiles[index1]
@@ -119,8 +113,8 @@ public class TwoZeroFourEight {
             if (val1 == BLANK && val2 != BLANK) {
                 tiles[tmpI] = val2
                 tiles[tmpJ] = BLANK
-                transitions.append(Transition(action: Actions.SLIDE, value: val2, posStart: tmpJ, posFinal: tmpI))
-                transitions.append(Transition(action: Actions.BLANK, value: BLANK, posFinal: tmpJ))
+                transitions.append(Transition(Actions.SLIDE, val2, tmpJ, tmpI))
+                transitions.append(Transition(Actions.BLANK, BLANK, tmpJ))
                 val1 = BLANK
                 tmpI = tmpJ
                 moved = true
@@ -133,38 +127,38 @@ public class TwoZeroFourEight {
     }
 
     private func slideLeft() -> Bool {
-        let a = slideTileRowOrColumn(0, index2: 4, index3: 8, index4: 12)
-        let b = slideTileRowOrColumn(1, index2: 5, index3: 9, index4: 13)
-        let c = slideTileRowOrColumn(2, index2: 6, index3: 10, index4: 14)
-        let d = slideTileRowOrColumn(3, index2: 7, index3: 11, index4: 15)
+        let a = slideTileRowOrColumn(0, 4, 8, 12)
+        let b = slideTileRowOrColumn(1, 5, 9, 13)
+        let c = slideTileRowOrColumn(2, 6, 10, 14)
+        let d = slideTileRowOrColumn(3, 7, 11, 15)
         return (a || b || c || d)
     }
 
     private func slideRight() -> Bool {
-        let a = slideTileRowOrColumn(12, index2: 8, index3: 4, index4: 0)
-        let b = slideTileRowOrColumn(13, index2: 9, index3: 5, index4: 1)
-        let c = slideTileRowOrColumn(14, index2: 10, index3: 6, index4: 2)
-        let d = slideTileRowOrColumn(15, index2: 11, index3: 7, index4: 3)
+        let a = slideTileRowOrColumn(12, 8, 4, 0)
+        let b = slideTileRowOrColumn(13, 9, 5, 1)
+        let c = slideTileRowOrColumn(14, 10, 6, 2)
+        let d = slideTileRowOrColumn(15, 11, 7, 3)
         return (a || b || c || d)
     }
 
     private func slideUp() -> Bool {
-        let a = slideTileRowOrColumn(0, index2: 1, index3: 2, index4: 3)
-        let b = slideTileRowOrColumn(4, index2: 5, index3: 6, index4: 7)
-        let c = slideTileRowOrColumn(8, index2: 9, index3: 10, index4: 11)
-        let d = slideTileRowOrColumn(12, index2: 13, index3: 14, index4: 15)
+        let a = slideTileRowOrColumn(0, 1, 2, 3)
+        let b = slideTileRowOrColumn(4, 5, 6, 7)
+        let c = slideTileRowOrColumn(8, 9, 10, 11)
+        let d = slideTileRowOrColumn(12, 13, 14, 15)
         return (a || b || c || d)
     }
 
     private func slideDown() -> Bool {
-        let a = slideTileRowOrColumn(3, index2: 2, index3: 1, index4: 0)
-        let b = slideTileRowOrColumn(7, index2: 6, index3: 5, index4: 4)
-        let c = slideTileRowOrColumn(11, index2: 10, index3: 9, index4: 8)
-        let d = slideTileRowOrColumn(15, index2: 14, index3: 13, index4: 12)
+        let a = slideTileRowOrColumn(3, 2, 1, 0)
+        let b = slideTileRowOrColumn(7, 6, 5, 4)
+        let c = slideTileRowOrColumn(11, 10, 9, 8)
+        let d = slideTileRowOrColumn(15, 14, 13, 12)
         return (a || b || c || d)
     }
 
-    private func compactTileRowOrColumn(index1: Int, index2: Int, index3: Int, index4: Int) -> Bool {
+    private func compactTileRowOrColumn(index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
 
         var compacted = false
 
@@ -202,42 +196,42 @@ public class TwoZeroFourEight {
                 numEmpty += 1
                 tiles[tmpJ] = BLANK
                 compacted = true
-                transitions.append(Transition(action: Actions.COMPACT, value: tiles[tmpI], posStart: tmpJ, posFinal: tmpI))
-                transitions.append(Transition(action: Actions.BLANK, value: BLANK, posFinal: tmpJ))
+                transitions.append(Transition(Actions.COMPACT, tiles[tmpI], tmpJ, tmpI))
+                transitions.append(Transition(Actions.BLANK, BLANK, tmpJ))
             }
         }
         return compacted
     }
 
     private func compactLeft() -> Bool {
-        let a = compactTileRowOrColumn(0, index2: 4, index3: 8, index4: 12)
-        let b = compactTileRowOrColumn(1, index2: 5, index3: 9, index4: 13)
-        let c = compactTileRowOrColumn(2, index2: 6, index3: 10, index4: 14)
-        let d = compactTileRowOrColumn(3, index2: 7, index3: 11, index4: 15)
+        let a = compactTileRowOrColumn(0, 4, 8, 12)
+        let b = compactTileRowOrColumn(1, 5, 9, 13)
+        let c = compactTileRowOrColumn(2, 6, 10, 14)
+        let d = compactTileRowOrColumn(3, 7, 11, 15)
         return (a || b || c || d)
     }
 
     private func compactRight() -> Bool {
-        let a = compactTileRowOrColumn(12, index2: 8, index3: 4, index4: 0)
-        let b = compactTileRowOrColumn(13, index2: 9, index3: 5, index4: 1)
-        let c = compactTileRowOrColumn(14, index2: 10, index3: 6, index4: 2)
-        let d = compactTileRowOrColumn(15, index2: 11, index3: 7, index4: 3)
+        let a = compactTileRowOrColumn(12, 8, 4, 0)
+        let b = compactTileRowOrColumn(13, 9, 5, 1)
+        let c = compactTileRowOrColumn(14, 10, 6, 2)
+        let d = compactTileRowOrColumn(15, 11, 7, 3)
         return (a || b || c || d)
     }
 
     private func compactUp() -> Bool {
-        let a = compactTileRowOrColumn(0, index2: 1, index3: 2, index4: 3)
-        let b = compactTileRowOrColumn(4, index2: 5, index3: 6, index4: 7)
-        let c = compactTileRowOrColumn(8, index2: 9, index3: 10, index4: 11)
-        let d = compactTileRowOrColumn(12, index2: 13, index3: 14, index4: 15)
+        let a = compactTileRowOrColumn(0, 1, 2, 3)
+        let b = compactTileRowOrColumn(4, 5, 6, 7)
+        let c = compactTileRowOrColumn(8, 9, 10, 11)
+        let d = compactTileRowOrColumn(12, 13, 14, 15)
         return (a || b || c || d)
     }
 
     private func compactDown() -> Bool {
-        let a = compactTileRowOrColumn(3, index2: 2, index3: 1, index4: 0)
-        let b = compactTileRowOrColumn(7, index2: 6, index3: 5, index4: 4)
-        let c = compactTileRowOrColumn(11, index2: 10, index3: 9, index4: 8)
-        let d = compactTileRowOrColumn(15, index2: 14, index3: 13, index4: 12)
+        let a = compactTileRowOrColumn(3, 2, 1, 0)
+        let b = compactTileRowOrColumn(7, 6, 5, 4)
+        let c = compactTileRowOrColumn(11, 10, 9, 8)
+        let d = compactTileRowOrColumn(15, 14, 13, 12)
         return (a || b || c || d)
     }
 
@@ -284,18 +278,12 @@ public class TwoZeroFourEight {
 
         var type: Actions
         var value = 0
-        private var posStart = -1, posFinal = -1
+        private var posStart, posFinal : Int
 
-        init(action: Actions, value: Int, posStart: Int, posFinal: Int) {
+        init(_ action: Actions, _ value: Int, _ posStart: Int, _ posFinal: Int = -1) {
             type = action
             self.value = value
             self.posStart = posStart
-            self.posFinal = posFinal
-        }
-
-        init(action: Actions, value: Int, posFinal: Int) {
-            type = action
-            self.value = value
             self.posFinal = posFinal
         }
     }
