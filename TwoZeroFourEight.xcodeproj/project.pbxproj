@@ -16,8 +16,7 @@
 		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
 		AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD5C20E1057000313CAC /* screenshot-2048.png */; };
 		AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */; };
-		AA7D52AE20E3C776007C3587 /* TZFE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA7D52AD20E3C776007C3587 /* TZFE.storyboard */; };
-		AA7D52B220E3C9A6007C3587 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D52B120E3C9A6007C3587 /* SplashController.swift */; };
+		AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81B57C20E4EF33006DF1E9 /* MainController.swift */; };
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
 		AAFF906820E3779A00125B2F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906720E3779A00125B2F /* art.scnassets */; };
 		AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF906920E39E7100125B2F /* SSRoundedButton.swift */; };
@@ -44,12 +43,11 @@
 		AA23DD4920E0CF1300313CAC /* TwoZeroFourEightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwoZeroFourEightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEightTests.swift; sourceTree = "<group>"; };
 		AA23DD4F20E0CF1300313CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA23DD5820E0E6C000313CAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AA23DD5820E0E6C000313CAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEight.swift; sourceTree = "<group>"; };
-		AA23DD5C20E1057000313CAC /* screenshot-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-2048.png"; sourceTree = "<group>"; };
+		AA23DD5C20E1057000313CAC /* screenshot-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "screenshot-2048.png"; path = "../screenshot-2048.png"; sourceTree = "<group>"; };
 		AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
-		AA7D52AD20E3C776007C3587 /* TZFE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TZFE.storyboard; path = TwoZeroFourEight/TZFE.storyboard; sourceTree = SOURCE_ROOT; };
-		AA7D52B120E3C9A6007C3587 /* SplashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
+		AA81B57C20E4EF33006DF1E9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		AAF75BB720E25F8200433928 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AAFF906720E3779A00125B2F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		AAFF906920E39E7100125B2F /* SSRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRoundedButton.swift; sourceTree = "<group>"; };
@@ -77,8 +75,6 @@
 		AA23DD2A20E0CF1200313CAC = {
 			isa = PBXGroup;
 			children = (
-				AA23DD5C20E1057000313CAC /* screenshot-2048.png */,
-				AA23DD5820E0E6C000313CAC /* README.md */,
 				AA23DD3520E0CF1300313CAC /* TwoZeroFourEight */,
 				AA23DD4C20E0CF1300313CAC /* TwoZeroFourEightTests */,
 				AA23DD3420E0CF1200313CAC /* Products */,
@@ -98,10 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				AA23DD3620E0CF1300313CAC /* AppDelegate.swift */,
-				AA7D52B120E3C9A6007C3587 /* SplashController.swift */,
+				AA81B57C20E4EF33006DF1E9 /* MainController.swift */,
 				AAF75BB720E25F8200433928 /* GameViewController.swift */,
 				AAFF906920E39E7100125B2F /* SSRoundedButton.swift */,
-				AAFF906D20E3C48000125B2F /* .gitignore */,
 				AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */,
 				AA23DD3F20E0CF1300313CAC /* Assets.xcassets */,
 				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
@@ -109,6 +104,9 @@
 				AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */,
 				AAFF906720E3779A00125B2F /* art.scnassets */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
+				AA23DD5820E0E6C000313CAC /* README.md */,
+				AA23DD5C20E1057000313CAC /* screenshot-2048.png */,
+				AAFF906D20E3C48000125B2F /* .gitignore */,
 			);
 			path = TwoZeroFourEight;
 			sourceTree = "<group>";
@@ -116,7 +114,6 @@
 		AA23DD4C20E0CF1300313CAC /* TwoZeroFourEightTests */ = {
 			isa = PBXGroup;
 			children = (
-				AA7D52AD20E3C776007C3587 /* TZFE.storyboard */,
 				AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */,
 				AA23DD4F20E0CF1300313CAC /* Info.plist */,
 			);
@@ -219,7 +216,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7D52AE20E3C776007C3587 /* TZFE.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,8 +227,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */,
+				AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */,
 				AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */,
-				AA7D52B220E3C9A6007C3587 /* SplashController.swift in Sources */,
 				AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */,
 				AA23DD5920E0E6C000313CAC /* README.md in Sources */,
 				AA23DD3720E0CF1300313CAC /* AppDelegate.swift in Sources */,

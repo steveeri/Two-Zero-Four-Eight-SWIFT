@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Splash Controller-->
+        <!--Main Controller-->
         <scene sceneID="rYP-3J-ltk">
             <objects>
-                <viewController id="zgG-mO-uDK" customClass="SplashController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zgG-mO-uDK" customClass="MainController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0lV-bc-xLK"/>
                         <viewControllerLayoutGuide type="bottom" id="dgu-WT-4DO"/>
@@ -71,6 +71,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <action selector="playGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="OpX-H5-YTl"/>
                                     <action selector="startGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="cDK-L0-Xq6"/>
                                 </connections>
                             </button>

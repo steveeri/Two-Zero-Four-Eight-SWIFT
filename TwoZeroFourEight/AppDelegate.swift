@@ -13,17 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch. 
         
-//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        window?.makeKeyAndVisible()
-//        
-//        let firstViewController = SplashController()
-//        let navController = UINavigationController(rootViewController : firstViewController)
-//        
-//        window?.rootViewController = navController
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.makeKeyAndVisible()
+        
+        let firstViewController = MainController()
+        let navController = UINavigationController(rootViewController : firstViewController)
+        
+        window?.rootViewController = navController
         
         return true
     }

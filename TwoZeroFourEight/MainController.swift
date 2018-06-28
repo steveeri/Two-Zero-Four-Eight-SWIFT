@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SplashController: UIViewController {
+class MainController: UIViewController {
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     @IBAction func playGameTapped(sender: UIButton) {
         print(sender.currentTitle)
         let vc = GameViewController ( nibName: "GameViewController", bundle: nil)
