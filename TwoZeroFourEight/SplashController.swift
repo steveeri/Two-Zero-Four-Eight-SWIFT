@@ -11,24 +11,23 @@ import UIKit
 class SplashController: UIViewController {
 
     
-    @IBAction func playGameTapped(sender: SSRoundedButton) {
-        print(sender.currentTitle)
-    }
-    
-    
-    @IBAction func quitGameTapped(sender: SSRoundedButton) {
-        print(sender.currentTitle)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func playGameTapped(sender: UIButton) {
+        print(sender.currentTitle)
+        let vc = GameViewController ( nibName: "GameViewController", bundle: nil)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func quitGameTapped(sender: UIButton) {
+        print(sender.currentTitle)
+        UIControl().sendAction(#selector(NSURLSessionTask.suspend), to: UIApplication.sharedApplication(), forEvent: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 

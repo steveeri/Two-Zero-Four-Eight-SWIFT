@@ -9,27 +9,29 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
     
     @IBOutlet weak var score: UILabel!
     @IBOutlet weak var highScore: UILabel!
     @IBOutlet weak var gameArea: UITextView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func newGameButtonTapped(sender: UIButton) {
-                print(sender.currentTitle)
+    
+    @IBAction func newGameTapped(sender: UIButton) {
+        print(sender.currentTitle)
     }
     
     
     @IBAction func quitButtonTapped(sender: UIButton) {
-        print(sender.currentTitle)
+        print(sender.currentTitle! + "BUGGER")
+        guard navigationController?.popViewControllerAnimated(true) != nil else { //modal
+            dismissViewControllerAnimated(true, completion: nil)
+            print("inside pop call")
+            return
+        }
     }
-    
+        
 }
