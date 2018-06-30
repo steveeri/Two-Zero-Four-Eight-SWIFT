@@ -16,7 +16,6 @@
 		AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD5C20E1057000313CAC /* screenshot-2048.png */; };
 		AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */; };
 		AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81B57C20E4EF33006DF1E9 /* MainController.swift */; };
-		AACDF42A20E7803E00B939E7 /* summerland_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AACDF42920E7803E00B939E7 /* summerland_logo.png */; };
 		AACDF42C20E7804500B939E7 /* summerland-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AACDF42B20E7804500B939E7 /* summerland-logo.png */; };
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
 		AAFF906820E3779A00125B2F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906720E3779A00125B2F /* art.scnassets */; };
@@ -48,7 +47,6 @@
 		AA23DD5C20E1057000313CAC /* screenshot-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "screenshot-2048.png"; path = "../screenshot-2048.png"; sourceTree = "<group>"; };
 		AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		AA81B57C20E4EF33006DF1E9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
-		AACDF42920E7803E00B939E7 /* summerland_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = summerland_logo.png; path = art.scnassets/summerland_logo.png; sourceTree = "<group>"; };
 		AACDF42B20E7804500B939E7 /* summerland-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "summerland-logo.png"; path = "art.scnassets/summerland-logo.png"; sourceTree = "<group>"; };
 		AAF75BB720E25F8200433928 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AAFF906720E3779A00125B2F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
 				AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */,
 				AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */,
-				AACDF42920E7803E00B939E7 /* summerland_logo.png */,
 				AACDF42B20E7804500B939E7 /* summerland-logo.png */,
 				AAFF906720E3779A00125B2F /* art.scnassets */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
@@ -207,7 +204,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACDF42C20E7804500B939E7 /* summerland-logo.png in Resources */,
-				AACDF42A20E7803E00B939E7 /* summerland_logo.png in Resources */,
 				AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */,
 				AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,

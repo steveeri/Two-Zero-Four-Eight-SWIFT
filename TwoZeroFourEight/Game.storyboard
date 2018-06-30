@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--2048-->
@@ -19,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qon-0J-iiM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="426"/>
+                                <rect key="frame" x="0.0" y="0.0" width="580" height="426"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rik-Kf-coC">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="580" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2048" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjT-uC-eek">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="36"/>
                                                 <color key="backgroundColor" red="0.91878426074981689" green="0.70367199182510376" blue="0.26235657930374146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="Nce-yT-P6A"/>
@@ -55,7 +54,7 @@
                                         </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" distribution="fillProportionally" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="g30-rD-NUV">
-                                        <rect key="frame" x="150" y="36" width="300" height="40"/>
+                                        <rect key="frame" x="140" y="36" width="300" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAM-OI-CFP" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
@@ -65,7 +64,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="ixY-0q-9It"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
-                                                <state key="normal" title="Back">
+                                                <state key="normal" title="Credits">
                                                     <color key="titleColor" red="0.082352941176470587" green="0.31764705882352939" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -75,7 +74,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="quitButtonTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="JN1-UJ-cu8"/>
+                                                    <action selector="creditsButtonTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="JN1-UJ-cu8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKC-cR-FOv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
@@ -105,7 +104,7 @@
                                         </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WAA-5d-Cgj">
-                                        <rect key="frame" x="10" y="76" width="580" height="100"/>
+                                        <rect key="frame" x="0.0" y="76" width="580" height="100"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="okX-02-idk">
                                                 <rect key="frame" x="0.0" y="0.0" width="288" height="100"/>
@@ -139,7 +138,7 @@
                                                 <constraints>
                                                     <constraint firstItem="eaZ-M7-HzE" firstAttribute="centerX" secondItem="qf1-2H-hIN" secondAttribute="centerX" id="qXm-Hn-Hzw"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" alignment="center" ambiguous="YES" misplaced="YES">
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="360000000021"/>
                                                 </variation>
                                             </stackView>
@@ -181,8 +180,8 @@
                                             <rect key="frame" x="72" y="83" width="150" height="360000000021"/>
                                         </variation>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7UC-Xw-cW0">
-                                        <rect key="frame" x="175" y="176" width="250" height="250"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="700" translatesAutoresizingMaskIntoConstraints="NO" id="7UC-Xw-cW0">
+                                        <rect key="frame" x="165" y="176" width="250" height="250"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kS-Y2-HxW">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
@@ -219,22 +218,11 @@
                                 </variation>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.33434527324584873" green="0.28975799828893251" blue="0.63148314790575921" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Qon-0J-iiM" secondAttribute="trailing" id="6Uz-wo-hRd"/>
-                            <constraint firstAttribute="bottom" secondItem="Qon-0J-iiM" secondAttribute="bottom" id="Fkd-Rf-S61"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qon-0J-iiM" secondAttribute="trailing" id="OhJ-eo-1p0"/>
-                            <constraint firstItem="Qon-0J-iiM" firstAttribute="leading" secondItem="qoF-ac-0kf" secondAttribute="leading" id="V4z-rs-4KZ"/>
-                            <constraint firstItem="K9Q-jJ-uzE" firstAttribute="top" secondItem="Qon-0J-iiM" secondAttribute="bottom" id="YoN-oY-w1A"/>
-                            <constraint firstItem="K9Q-jJ-uzE" firstAttribute="top" secondItem="Qon-0J-iiM" secondAttribute="bottom" id="ZxV-Ql-PrC"/>
-                            <constraint firstItem="Qon-0J-iiM" firstAttribute="leading" secondItem="qoF-ac-0kf" secondAttribute="leadingMargin" id="cgg-qc-RQE"/>
-                            <constraint firstAttribute="trailing" secondItem="Qon-0J-iiM" secondAttribute="trailing" id="yy0-ih-E4e"/>
+                            <constraint firstItem="K9Q-jJ-uzE" firstAttribute="top" secondItem="Qon-0J-iiM" secondAttribute="bottom" id="F4I-3P-DjM"/>
+                            <constraint firstAttribute="trailing" secondItem="Qon-0J-iiM" secondAttribute="trailing" id="eKv-46-xsH"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="6Uz-wo-hRd"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="gameArea" destination="0kS-Y2-HxW" id="cmh-FT-0qE"/>

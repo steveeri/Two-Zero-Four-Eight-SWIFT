@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
         gameArea.text = game.toString()
     }
     
-    @IBAction func quitButtonTapped(sender: SSRoundedButton) {
+    @IBAction func creditsButtonTapped(sender: SSRoundedButton) {
         //print(sender.currentTitle!)
         guard navigationController?.popViewControllerAnimated(true) != nil else { //modal
             dismissViewControllerAnimated(true, completion: nil)
