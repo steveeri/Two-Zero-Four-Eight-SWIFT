@@ -14,24 +14,28 @@ class GameViewController: UIViewController {
     @IBOutlet weak var highScore: UILabel!
     @IBOutlet weak var gameArea: UITextView!
     
+    // Create a game object
+    var game : TwoZeroFourEight = TwoZeroFourEight()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        gameArea.text = game.toString()
     }
-
     
     @IBAction func newGameTapped(sender: SSRoundedButton) {
-        print(sender.currentTitle)
+        //print(sender.currentTitle!)
+        game = TwoZeroFourEight()
+        gameArea.text = game.toString()
     }
     
-    
     @IBAction func quitButtonTapped(sender: SSRoundedButton) {
-        print(sender.currentTitle! + "BUGGER")
+        //print(sender.currentTitle!)
         guard navigationController?.popViewControllerAnimated(true) != nil else { //modal
             dismissViewControllerAnimated(true, completion: nil)
-            print("inside pop call")
+            //print("inside pop call")
             return
         }
     }
-        
+    
 }

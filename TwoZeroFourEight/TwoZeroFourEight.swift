@@ -34,7 +34,7 @@ public class TwoZeroFourEight {
     internal func createNewTransitions() {
         transitions = [Transition]()
     }
-
+    
     func rePlot() {
         self.createNewTransitions()
         for i in 0..<GRID_CNT {

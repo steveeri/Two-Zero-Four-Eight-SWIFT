@@ -8,7 +8,7 @@
         <!--2048-->
         <scene sceneID="rYP-3J-ltk">
             <objects>
-                <viewController title="2048" extendedLayoutIncludesOpaqueBars="YES" id="zgG-mO-uDK" customClass="MainController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainView" title="2048" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zgG-mO-uDK" customClass="MainController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0lV-bc-xLK"/>
                         <viewControllerLayoutGuide type="bottom" id="dgu-WT-4DO"/>

@@ -9,26 +9,25 @@
 import UIKit
 
 class MainController: UIViewController {
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func playGameTapped(sender:SSRoundedButton) {
-        print(sender.currentTitle)
-        let vc = GameViewController ( nibName: "Game.storyboard", bundle: nil)
-        navigationController?.pushViewController(vc, animated: true)
+        //print(sender.currentTitle)
+        let vc : UIViewController = UIStoryboard(name: "Game", bundle: nil).instantiateViewControllerWithIdentifier("GamePanelView") as UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     @IBAction func quitGameTapped(sender: SSRoundedButton) {
-        print(sender.currentTitle)
+        //print(sender.currentTitle)
         UIControl().sendAction(#selector(NSURLSessionTask.suspend), to: UIApplication.sharedApplication(), forEvent: nil)
     }
     
     override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }

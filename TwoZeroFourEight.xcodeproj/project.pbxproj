@@ -12,7 +12,6 @@
 		AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD3F20E0CF1300313CAC /* Assets.xcassets */; };
 		AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */; };
 		AA23DD4E20E0CF1300313CAC /* TwoZeroFourEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */; };
-		AA23DD5920E0E6C000313CAC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5820E0E6C000313CAC /* README.md */; };
 		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
 		AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD5C20E1057000313CAC /* screenshot-2048.png */; };
 		AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */; };
@@ -22,7 +21,6 @@
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
 		AAFF906820E3779A00125B2F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906720E3779A00125B2F /* art.scnassets */; };
 		AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF906920E39E7100125B2F /* SSRoundedButton.swift */; };
-		AAFF906E20E3C48000125B2F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906D20E3C48000125B2F /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,7 +210,6 @@
 				AACDF42A20E7803E00B939E7 /* summerland_logo.png in Resources */,
 				AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */,
 				AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */,
-				AAFF906E20E3C48000125B2F /* .gitignore in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,
 				AAFF906820E3779A00125B2F /* art.scnassets in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
@@ -238,7 +235,6 @@
 				AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */,
 				AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */,
 				AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */,
-				AA23DD5920E0E6C000313CAC /* README.md in Sources */,
 				AA23DD3720E0CF1300313CAC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.summerland.TwoZeroFourEight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 			};
 			name = Debug;
 		};
@@ -391,6 +388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.summerland.TwoZeroFourEight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 			};
 			name = Release;
 		};
