@@ -20,10 +20,10 @@
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YnO-Rz-Ezn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI">
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI">
                                         <rect key="frame" x="127" y="0.0" width="346" height="300"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summerland-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="400" verticalHuggingPriority="400" horizontalCompressionResistancePriority="550" verticalCompressionResistancePriority="550" image="summerland-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
                                                 <rect key="frame" x="5" y="5" width="336" height="290"/>
                                             </imageView>
                                         </subviews>
