@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Play 2048"; ObjectID = "cFn-uA-Ovv"; */
+"cFn-uA-Ovv.normalTitle" = "Play 2048";
+
+/* Class = "UIButton"; normalTitle = "Quit"; ObjectID = "iuM-he-gyH"; */
+"iuM-he-gyH.normalTitle" = "Quit";
+
+/* Class = "UIViewController"; title = "2048"; ObjectID = "zgG-mO-uDK"; */
+"zgG-mO-uDK.title" = "2048";

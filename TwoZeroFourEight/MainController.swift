@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainController.swift
 //  TwoZeroFourEight
 //
 //  Created by Steve Richards on 26/06/2018.
@@ -15,13 +15,13 @@ class MainController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func playGameTapped(sender: UIButton) {
+    @IBAction func playGameTapped(sender:SSRoundedButton) {
         print(sender.currentTitle)
-        let vc = GameViewController ( nibName: "GameViewController", bundle: nil)
+        let vc = GameViewController ( nibName: "Game.storyboard", bundle: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func quitGameTapped(sender: UIButton) {
+    @IBAction func quitGameTapped(sender: SSRoundedButton) {
         print(sender.currentTitle)
         UIControl().sendAction(#selector(NSURLSessionTask.suspend), to: UIApplication.sharedApplication(), forEvent: nil)
     }

@@ -3,14 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Main Controller-->
+        <!--2048-->
         <scene sceneID="rYP-3J-ltk">
             <objects>
-                <viewController id="zgG-mO-uDK" customClass="MainController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="2048" extendedLayoutIncludesOpaqueBars="YES" id="zgG-mO-uDK" customClass="MainController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0lV-bc-xLK"/>
                         <viewControllerLayoutGuide type="bottom" id="dgu-WT-4DO"/>
@@ -19,152 +17,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summerland_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="jrN-Lr-tjb">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YnO-Rz-Ezn">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI">
+                                        <rect key="frame" x="127" y="0.0" width="346" height="300"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="summerland-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
+                                                <rect key="frame" x="5" y="5" width="336" height="290"/>
+                                            </imageView>
+                                        </subviews>
+                                        <edgeInsets key="layoutMargins" top="5" left="5" bottom="5" right="5"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" alignment="firstBaseline" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-KQ-ATt">
+                                        <rect key="frame" x="153" y="300" width="295" height="300"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-uA-Ovv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="125" width="140" height="50"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="140" id="1Bp-V2-2BQ"/>
+                                                    <constraint firstAttribute="height" constant="50" id="mbr-cD-8yB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="Play 2048">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="playGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="O9h-4O-cKk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-he-gyH" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
+                                                <rect key="frame" x="155" y="125" width="140" height="50"/>
+                                                <color key="backgroundColor" red="0.91809219121932983" green="0.51543110609054565" blue="0.27315425872802734" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="6qN-CA-03O"/>
+                                                    <constraint firstAttribute="width" constant="140" id="dJi-N0-IAZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="Quit">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="quitGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="2GZ-j3-Mig"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="iuM-he-gyH" firstAttribute="centerY" secondItem="4W9-KQ-ATt" secondAttribute="centerY" id="0n3-sV-zeN"/>
+                                            <constraint firstItem="cFn-uA-Ovv" firstAttribute="centerY" secondItem="4W9-KQ-ATt" secondAttribute="centerY" id="ZqM-jB-zgY"/>
+                                        </constraints>
+                                        <variation key="widthClass=compact" alignment="center"/>
+                                    </stackView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="153" id="7PG-MR-X9F"/>
+                                    <constraint firstItem="yYR-Tv-9vI" firstAttribute="centerX" secondItem="YnO-Rz-Ezn" secondAttribute="centerX" id="2mL-ci-4oE"/>
+                                    <constraint firstAttribute="bottom" secondItem="4W9-KQ-ATt" secondAttribute="bottom" constant="20" id="FhM-7W-jnt"/>
+                                    <constraint firstItem="yYR-Tv-9vI" firstAttribute="centerY" secondItem="YnO-Rz-Ezn" secondAttribute="centerY" id="WRW-DC-xVh"/>
+                                    <constraint firstItem="yYR-Tv-9vI" firstAttribute="centerY" secondItem="YnO-Rz-Ezn" secondAttribute="centerY" id="a4J-zc-Ud4"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="7PG-MR-X9F"/>
+                                        <exclude reference="2mL-ci-4oE"/>
+                                        <exclude reference="WRW-DC-xVh"/>
+                                        <exclude reference="a4J-zc-Ud4"/>
+                                        <exclude reference="FhM-7W-jnt"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="7PG-MR-X9F"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-uA-Ovv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="190" id="5ph-JN-9hy"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Tga-L0-rs0"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="UTt-h4-iXM"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="Wkx-eP-tSa"/>
-                                    <constraint firstAttribute="height" constant="40" id="Zn0-vd-BVR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Play 2048">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5ph-JN-9hy"/>
-                                        <exclude reference="Tga-L0-rs0"/>
-                                        <exclude reference="UTt-h4-iXM"/>
-                                        <exclude reference="Wkx-eP-tSa"/>
-                                        <exclude reference="Zn0-vd-BVR"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="5ph-JN-9hy"/>
-                                        <include reference="Tga-L0-rs0"/>
-                                        <exclude reference="UTt-h4-iXM"/>
-                                        <include reference="Wkx-eP-tSa"/>
-                                        <include reference="Zn0-vd-BVR"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="playGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="OpX-H5-YTl"/>
-                                    <action selector="startGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="cDK-L0-Xq6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-he-gyH" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="190" height="40"/>
-                                <color key="backgroundColor" red="0.91809219121932983" green="0.51543110609054565" blue="0.27315425872802734" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ydd-wp-3z6"/>
-                                    <constraint firstAttribute="width" constant="190" id="oA8-17-KLs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Quit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Ydd-wp-3z6"/>
-                                        <exclude reference="oA8-17-KLs"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="Ydd-wp-3z6"/>
-                                        <include reference="oA8-17-KLs"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="quitGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="2GZ-j3-Mig"/>
-                                    <action selector="startGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="s1K-JD-Ngd"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.015253671444952488" green="0.00019766567857004702" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dgu-WT-4DO" firstAttribute="top" secondItem="iuM-he-gyH" secondAttribute="bottom" constant="96" id="4eR-ZL-b6M"/>
-                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="top" secondItem="0lV-bc-xLK" secondAttribute="bottom" constant="124" id="PdK-ye-peE">
-                                <variation key="widthClass=compact" constant="84"/>
-                            </constraint>
-                            <constraint firstItem="iuM-he-gyH" firstAttribute="centerX" secondItem="DM2-EV-6yV" secondAttribute="centerX" id="SvQ-IH-J2c"/>
-                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="centerX" secondItem="DM2-EV-6yV" secondAttribute="centerX" id="ZLk-j8-jee"/>
-                            <constraint firstItem="iuM-he-gyH" firstAttribute="top" secondItem="cFn-uA-Ovv" secondAttribute="bottom" constant="57" id="olO-EI-cJd"/>
-                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leadingMargin" constant="60" id="rSQ-jF-gpw"/>
-                            <constraint firstItem="dgu-WT-4DO" firstAttribute="top" secondItem="jrN-Lr-tjb" secondAttribute="bottom" constant="236" id="y70-rp-QR3"/>
-                            <constraint firstItem="jrN-Lr-tjb" firstAttribute="centerX" secondItem="cFn-uA-Ovv" secondAttribute="centerX" id="yh0-Eb-pJH"/>
+                            <constraint firstAttribute="trailing" secondItem="YnO-Rz-Ezn" secondAttribute="trailing" id="5Qk-9l-5hZ"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leading" id="9b7-aD-tn4"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="centerX" secondItem="DM2-EV-6yV" secondAttribute="centerX" id="9iW-QQ-bmc"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="top" secondItem="DM2-EV-6yV" secondAttribute="top" id="9jd-4P-MKc"/>
+                            <constraint firstAttribute="trailing" secondItem="YnO-Rz-Ezn" secondAttribute="trailing" id="bNK-Gw-zox"/>
+                            <constraint firstItem="dgu-WT-4DO" firstAttribute="top" secondItem="YnO-Rz-Ezn" secondAttribute="bottom" id="h6U-fR-srg"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leading" id="sNg-8l-DKW"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="centerY" secondItem="DM2-EV-6yV" secondAttribute="centerY" id="vOv-Kl-pf6"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="jrN-Lr-tjb"/>
-                                <exclude reference="cFn-uA-Ovv"/>
-                                <exclude reference="iuM-he-gyH"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="4eR-ZL-b6M"/>
-                                <exclude reference="y70-rp-QR3"/>
-                                <exclude reference="SvQ-IH-J2c"/>
-                                <exclude reference="olO-EI-cJd"/>
-                                <exclude reference="PdK-ye-peE"/>
-                                <exclude reference="ZLk-j8-jee"/>
-                                <exclude reference="rSQ-jF-gpw"/>
-                                <exclude reference="yh0-Eb-pJH"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="jrN-Lr-tjb"/>
-                                <include reference="cFn-uA-Ovv"/>
-                                <include reference="iuM-he-gyH"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="4eR-ZL-b6M"/>
-                                <exclude reference="y70-rp-QR3"/>
-                                <include reference="SvQ-IH-J2c"/>
-                                <include reference="olO-EI-cJd"/>
-                                <include reference="PdK-ye-peE"/>
-                                <include reference="ZLk-j8-jee"/>
-                                <include reference="rSQ-jF-gpw"/>
-                                <include reference="yh0-Eb-pJH"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <connections>
-                        <outlet property="startGameTapped" destination="cFn-uA-Ovv" id="liY-Rm-RrY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76Q-hN-dNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-568.5" y="-231"/>
+            <point key="canvasLocation" x="-611" y="-223"/>
         </scene>
     </scenes>
     <resources>
-        <image name="summerland_logo.png" width="485" height="316"/>
+        <image name="summerland-logo.png" width="336" height="210"/>
     </resources>
 </document>

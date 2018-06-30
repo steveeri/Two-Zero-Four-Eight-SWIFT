@@ -20,12 +20,12 @@ class GameViewController: UIViewController {
     }
 
     
-    @IBAction func newGameTapped(sender: UIButton) {
+    @IBAction func newGameTapped(sender: SSRoundedButton) {
         print(sender.currentTitle)
     }
     
     
-    @IBAction func quitButtonTapped(sender: UIButton) {
+    @IBAction func quitButtonTapped(sender: SSRoundedButton) {
         print(sender.currentTitle! + "BUGGER")
         guard navigationController?.popViewControllerAnimated(true) != nil else { //modal
             dismissViewControllerAnimated(true, completion: nil)

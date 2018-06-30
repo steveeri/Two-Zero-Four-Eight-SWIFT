@@ -9,10 +9,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--2048 Game Panel-->
+        <!--2048-->
         <scene sceneID="Dc7-1l-flt">
             <objects>
-                <viewController storyboardIdentifier="Main" title="2048 Game Panel" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NsI-IM-9CB" customClass="GameViewController" customModule="TwoZeroFourEight" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" title="2048" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NsI-IM-9CB" customClass="GameViewController" customModule="TwoZeroFourEight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q84-SW-CLT"/>
                         <viewControllerLayoutGuide type="bottom" id="K9Q-jJ-uzE"/>
@@ -342,7 +342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpu-hC-mNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1197" y="-756"/>
+            <point key="canvasLocation" x="-1186.5" y="-754.5"/>
         </scene>
     </scenes>
 </document>
