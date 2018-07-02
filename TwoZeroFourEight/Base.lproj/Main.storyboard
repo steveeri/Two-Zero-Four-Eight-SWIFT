@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zgG-mO-uDK">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zgG-mO-uDK">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--2048-->
         <scene sceneID="rYP-3J-ltk">
@@ -14,65 +22,61 @@
                         <viewControllerLayoutGuide type="bottom" id="dgu-WT-4DO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DM2-EV-6yV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YnO-Rz-Ezn">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI">
-                                        <rect key="frame" x="127" y="0.0" width="346" height="300"/>
+                                        <rect key="frame" x="14.5" y="0.0" width="346" height="333.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="400" verticalHuggingPriority="400" horizontalCompressionResistancePriority="550" verticalCompressionResistancePriority="550" image="summerland-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
-                                                <rect key="frame" x="5" y="5" width="336" height="290"/>
+                                                <rect key="frame" x="5" y="25" width="336" height="303.5"/>
                                             </imageView>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="5" left="5" bottom="5" right="5"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" alignment="firstBaseline" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-KQ-ATt">
-                                        <rect key="frame" x="153" y="300" width="295" height="300"/>
+                                        <rect key="frame" x="40" y="333.5" width="295" height="333.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-uA-Ovv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="125" width="140" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="0.0" y="142" width="140" height="50"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="1Bp-V2-2BQ"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="1Bp-V2-2BQ"/>
                                                     <constraint firstAttribute="height" constant="50" id="mbr-cD-8yB"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Play 2048">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="playGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="O9h-4O-cKk"/>
+                                                    <action selector="playGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="9mY-N6-KXw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-he-gyH" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                <rect key="frame" x="155" y="125" width="140" height="50"/>
-                                                <color key="backgroundColor" red="0.91809219121932983" green="0.51543110609054565" blue="0.27315425872802734" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="155" y="142" width="140" height="50"/>
+                                                <color key="backgroundColor" red="0.88896757364273071" green="0.43384018540382385" blue="0.21371789276599884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="6qN-CA-03O"/>
-                                                    <constraint firstAttribute="width" constant="140" id="dJi-N0-IAZ"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="dJi-N0-IAZ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Quit">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="quitGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="2GZ-j3-Mig"/>
+                                                    <action selector="quitGameTapped:" destination="zgG-mO-uDK" eventType="touchUpInside" id="K5h-PI-g36"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="iuM-he-gyH" firstAttribute="centerY" secondItem="4W9-KQ-ATt" secondAttribute="centerY" id="0n3-sV-zeN"/>
-                                            <constraint firstItem="cFn-uA-Ovv" firstAttribute="centerY" secondItem="4W9-KQ-ATt" secondAttribute="centerY" id="ZqM-jB-zgY"/>
-                                        </constraints>
                                         <variation key="widthClass=compact" alignment="center"/>
                                     </stackView>
                                 </subviews>
@@ -92,8 +96,8 @@
                                 </variation>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.015253671444952488" green="0.00019766567857004702" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.018421582877635956" green="0.0" blue="3.2199743145611137e-05" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="YnO-Rz-Ezn" secondAttribute="trailing" id="5Qk-9l-5hZ"/>
                             <constraint firstItem="YnO-Rz-Ezn" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leading" id="9b7-aD-tn4"/>

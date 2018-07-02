@@ -15,16 +15,15 @@ class MainController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func playGameTapped(sender:SSRoundedButton) {
+    @IBAction func playGameTapped(_ sender: SSRoundedButton) {
         //print(sender.currentTitle)
-        let vc : UIViewController = UIStoryboard(name: "Game", bundle: nil).instantiateViewControllerWithIdentifier("GamePanelView") as UIViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        let vc : UIViewController = UIStoryboard(name: "Game", bundle: nil).instantiateViewController(withIdentifier: "GamePanelView") as UIViewController
+        self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func quitGameTapped(sender: SSRoundedButton) {
+    @IBAction func quitGameTapped(_ sender: Any) {
         //print(sender.currentTitle)
-        UIControl().sendAction(#selector(NSURLSessionTask.suspend), to: UIApplication.sharedApplication(), forEvent: nil)
-    }
+        UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

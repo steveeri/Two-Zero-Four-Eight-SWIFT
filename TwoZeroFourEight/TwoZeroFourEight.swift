@@ -1,10 +1,20 @@
-﻿import Foundation
+import Foundation
+
+
+public enum GameMoves : String {
+    case UP,DOWN,LEFT,RIGHT
+}
 
 
 public class TwoZeroFourEight {
 
-    var score = 0
+    public let NO_MORE_MOVES = "Sorry. No more moves possible."
+    public let NEW_HIGHSCORE = "Yes. New PB reached."
+    public let WINNER = "Awesome, you have won the game."
+
+    var score = 0, previousHighScore = 0
     private var numEmpty = 16
+    var gameOver = false
     var maxTile = 0
     var transitions = [Transition]()
 
@@ -24,11 +34,12 @@ public class TwoZeroFourEight {
         case REFRESH
     }
 
-    init () {
+    init (_ previousHighScore : Int = 0) {
         //print("Inside init on TZFE\n")
         self.createNewTransitions()
         self.addNewTile()
         self.addNewTile()
+        self.previousHighScore = previousHighScore
     }
 
     internal func createNewTransitions() {
@@ -42,6 +53,10 @@ public class TwoZeroFourEight {
         }
     }
 
+    public func acheivedTarget() -> Bool {
+        return maxTile >= TARGET
+    }
+    
     internal func addNewTile() {
         if (numEmpty == 0) { return }
 
@@ -87,13 +102,13 @@ public class TwoZeroFourEight {
         return false
     }
 
-    private func slideTileRowOrColumn(index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
+    private func slideTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
 
         var moved = false
         var val1 = tiles[index1]
         var tmpI = index1
 
-        for j in 0..<COL_CNT {
+        for j in 1..<COL_CNT {
             var val2 = BLANK
             var tmpJ = BLANK
             switch (j) {
@@ -158,11 +173,11 @@ public class TwoZeroFourEight {
         return (a || b || c || d)
     }
 
-    private func compactTileRowOrColumn(index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
+    private func compactTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
 
         var compacted = false
 
-        for j in 0..<COL_CNT {
+        for j in 1..<COL_CNT {
             var val1 = BLANK
             var val2 = BLANK
             var tmpI = BLANK
@@ -235,28 +250,52 @@ public class TwoZeroFourEight {
         return (a || b || c || d)
     }
 
-    func actionMoveLeft() -> Bool {
+    func actionMove(move : GameMoves) -> Bool {
+        
+//        if (!hasMovesRemaining()) {
+//            gameOver = true
+//            return false
+//        }
+
+        var result = false
+        
+        switch move {
+        case .UP:
+            result = actionMoveUp()
+        case .DOWN:
+            result = actionMoveDown()
+        case .LEFT:
+            result = actionMoveLeft()
+        case .RIGHT:
+            result = actionMoveRight()
+        }
+        
+        addNewTile()
+        return result
+    }
+
+    private func actionMoveLeft() -> Bool {
         let a = slideLeft()
         let b = compactLeft()
         let c = slideLeft()
         return (a || b || c)
     }
-
-    func actionMoveRight() -> Bool {
+    
+    private func actionMoveRight() -> Bool {
         let a = slideRight()
         let b = compactRight()
         let c = slideRight()
         return (a || b || c)
     }
-
-    func actionMoveUp() -> Bool {
+    
+    private func actionMoveUp() -> Bool {
         let a = slideUp()
         let b = compactUp()
         let c = slideUp()
         return (a || b || c)
     }
-
-    func actionMoveDown() -> Bool {
+    
+    private func actionMoveDown() -> Bool {
         let a = slideDown()
         let b = compactDown()
         let c = slideDown()
@@ -264,15 +303,14 @@ public class TwoZeroFourEight {
     }
 
     func toString() -> String {
-        var str = "TwoZeroFourEight:class\n--------------------\n"
+        var str = "---------\n"
         str += "|\(tiles[0])|\(tiles[4])|\(tiles[8])|\(tiles[12])|\n"
         str += "|\(tiles[1])|\(tiles[5])|\(tiles[9])|\(tiles[13])|\n"
         str += "|\(tiles[2])|\(tiles[6])|\(tiles[10])|\(tiles[14])|\n"
         str += "|\(tiles[3])|\(tiles[7])|\(tiles[11])|\(tiles[15])|\n"
-        str += "--------------------\n"
+        str += "---------\n"
         return (str)
     }
-
     
     class Transition {
 
