@@ -83,6 +83,10 @@
 		AA23DD2A20E0CF1200313CAC = {
 			isa = PBXGroup;
 			children = (
+				AAD9682C20EB184D00AE9A91 /* screenshot1-2048.png */,
+				AAD9682E20EB184E00AE9A91 /* screenshot2-2048.png */,
+				AAD9682D20EB184D00AE9A91 /* screenshot3-2048.png */,
+				AAFF906D20E3C48000125B2F /* .gitignore */,
 				AA23DD3520E0CF1300313CAC /* TwoZeroFourEight */,
 				AA23DD4C20E0CF1300313CAC /* TwoZeroFourEightTests */,
 				AA23DD3420E0CF1200313CAC /* Products */,
@@ -115,10 +119,6 @@
 				AACDF42B20E7804500B939E7 /* summerland-logo.png */,
 				AAFF906720E3779A00125B2F /* art.scnassets */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
-				AAFF906D20E3C48000125B2F /* .gitignore */,
-				AAD9682C20EB184D00AE9A91 /* screenshot1-2048.png */,
-				AAD9682E20EB184E00AE9A91 /* screenshot2-2048.png */,
-				AAD9682D20EB184D00AE9A91 /* screenshot3-2048.png */,
 				AA23DD5820E0E6C000313CAC /* README.md */,
 			);
 			path = TwoZeroFourEight;
