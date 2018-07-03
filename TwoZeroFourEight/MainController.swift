@@ -23,7 +23,8 @@ class MainController: UIViewController {
     
     @IBAction func quitGameTapped(_ sender: Any) {
         //print(sender.currentTitle)
-        UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)    }
+        UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

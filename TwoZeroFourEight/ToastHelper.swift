@@ -64,7 +64,7 @@ class Toast {
     }
 
     class func showPositiveMessage(message:String) {
-        showAlert(backgroundColor: UIColor.green, textColor: UIColor.white, message: message)
+        showAlert(backgroundColor: UIColor.green, textColor: UIColor.black, message: message)
     }
     class func showNegativeMessage(message:String) {
         showAlert(backgroundColor: UIColor.red, textColor: UIColor.white, message: message)
