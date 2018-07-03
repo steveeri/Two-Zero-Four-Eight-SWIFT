@@ -169,7 +169,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="323.5"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kS-Y2-HxW">
-                                                        <rect key="frame" x="85" y="59" width="206" height="206"/>
+                                                        <rect key="frame" x="85.5" y="59" width="205.5" height="205.5"/>
                                                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="kyW-Eh-zdj"/>
@@ -180,80 +180,12 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcS-s4-92a" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                        <rect key="frame" x="173" y="21" width="30" height="30"/>
-                                                        <color key="backgroundColor" red="0.2219652533531189" green="0.99803823232650757" blue="0.12573400139808655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="3WE-gT-xwn"/>
-                                                            <constraint firstAttribute="width" constant="30" id="n9U-no-Yeu"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                                        <state key="normal" title="^"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="moveUpTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="IHH-28-ZuE"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Om-rF-7Up" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                        <rect key="frame" x="47.5" y="147.5" width="29.5" height="30"/>
-                                                        <color key="backgroundColor" red="0.2219652533531189" green="0.99803823232650757" blue="0.12573400139808655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                                        <state key="normal" title="&lt;"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="moveLeftTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="ZFz-RW-Qkg"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-lt-q5x" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                        <rect key="frame" x="173" y="273" width="30" height="30"/>
-                                                        <color key="backgroundColor" red="0.2219652533531189" green="0.99803823232650757" blue="0.12573400139808655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                                        <state key="normal" title="v"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="moveDownTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="RxM-gd-gwV"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYO-jF-rvr" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                        <rect key="frame" x="299" y="147.5" width="29.5" height="30"/>
-                                                        <color key="backgroundColor" red="0.2219652533531189" green="0.99803823232650757" blue="0.12573400139808655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                                        <state key="normal" title="&gt;"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="moveRightTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="FQm-xx-ATJ"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="centerX" secondItem="Qbx-pK-5HN" secondAttribute="centerX" id="2WC-gy-NSM"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="top" secondItem="Qbx-pK-5HN" secondAttribute="top" constant="21" id="BLI-FM-Qhf"/>
-                                                    <constraint firstItem="0kS-Y2-HxW" firstAttribute="leading" secondItem="3Om-rF-7Up" secondAttribute="trailing" constant="8" symbolic="YES" id="CVP-L9-sHn"/>
-                                                    <constraint firstItem="3Om-rF-7Up" firstAttribute="centerY" secondItem="0kS-Y2-HxW" secondAttribute="centerY" id="Dds-HW-yjG"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="width" secondItem="3Om-rF-7Up" secondAttribute="width" id="GmV-vz-NGJ"/>
                                                     <constraint firstItem="0kS-Y2-HxW" firstAttribute="centerY" secondItem="Qbx-pK-5HN" secondAttribute="centerY" id="Hmf-dj-LOq"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="height" secondItem="3Om-rF-7Up" secondAttribute="height" id="LNT-Le-wVM"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="leading" secondItem="1mB-lt-q5x" secondAttribute="leading" id="Mms-Ei-08A"/>
-                                                    <constraint firstItem="xYO-jF-rvr" firstAttribute="leading" secondItem="0kS-Y2-HxW" secondAttribute="trailing" constant="8" symbolic="YES" id="Qtt-JP-bHu"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="height" secondItem="1mB-lt-q5x" secondAttribute="height" id="RdG-Km-Z0f"/>
-                                                    <constraint firstItem="0kS-Y2-HxW" firstAttribute="top" secondItem="KcS-s4-92a" secondAttribute="bottom" constant="8" symbolic="YES" id="RhC-Rk-7C4"/>
-                                                    <constraint firstItem="0kS-Y2-HxW" firstAttribute="centerX" secondItem="1mB-lt-q5x" secondAttribute="centerX" id="Sgf-CG-UlT"/>
-                                                    <constraint firstItem="1mB-lt-q5x" firstAttribute="top" secondItem="0kS-Y2-HxW" secondAttribute="bottom" constant="8" symbolic="YES" id="SiQ-fj-T6m"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="width" secondItem="xYO-jF-rvr" secondAttribute="width" id="aw5-5e-fIk"/>
                                                     <constraint firstItem="0kS-Y2-HxW" firstAttribute="centerX" secondItem="Qbx-pK-5HN" secondAttribute="centerX" id="eNN-K9-6GG"/>
-                                                    <constraint firstItem="3Om-rF-7Up" firstAttribute="baseline" secondItem="xYO-jF-rvr" secondAttribute="baseline" id="hnd-wi-0gg"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="height" secondItem="xYO-jF-rvr" secondAttribute="height" id="i9T-mh-xMA"/>
-                                                    <constraint firstItem="3Om-rF-7Up" firstAttribute="centerY" secondItem="Qbx-pK-5HN" secondAttribute="centerY" id="r5U-LU-mQs"/>
-                                                    <constraint firstItem="KcS-s4-92a" firstAttribute="width" secondItem="1mB-lt-q5x" secondAttribute="width" id="xNV-wg-647"/>
+                                                    <constraint firstItem="0kS-Y2-HxW" firstAttribute="top" secondItem="Qbx-pK-5HN" secondAttribute="top" constant="59" id="zNP-0m-xC4"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

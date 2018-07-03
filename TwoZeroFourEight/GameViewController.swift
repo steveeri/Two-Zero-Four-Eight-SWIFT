@@ -22,6 +22,23 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad called")
+
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
+        
         setupForNewGamePanel()
     }
     
@@ -93,25 +110,29 @@ class GameViewController: UIViewController {
         }
     }
     
-
     /* BELOW:  RESPOND TO GAME MOVE INSTRUCTIONS */
-    @IBAction func moveRightTapped(_ sender: SSRoundedButton) {
-        _ = game.actionMove(move: .RIGHT)
-        postMoveChecksAndUpdates()
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
+                _ = game.actionMove(move: .RIGHT)
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+                _ = game.actionMove(move: .DOWN)
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+                _ = game.actionMove(move: .LEFT)
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+                _ = game.actionMove(move: .UP)
+            default:
+                return
+            }
+            postMoveChecksAndUpdates()
+        }
     }
-    
-    @IBAction func moveLeftTapped(_ sender: SSRoundedButton) {
-        _ = game.actionMove(move: .LEFT)
-        postMoveChecksAndUpdates()
-    }
-    
-    @IBAction func moveUpTapped(_ sender: SSRoundedButton) {
-        _ = game.actionMove(move: .UP)
-        postMoveChecksAndUpdates()
-    }
-    
-    @IBAction func moveDownTapped(_ sender: SSRoundedButton) {
-        _ = game.actionMove(move: .DOWN)
-        postMoveChecksAndUpdates()
-    }
+
 }

@@ -14,17 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch. 
-        
-//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        window?.makeKeyAndVisible()
-//        
-//        let firstViewController = MainController()
-//        let navController = UINavigationController(rootViewController : firstViewController)
-//        navController.setNavigationBarHidden(true, animated: false)
-//        
-//        window?.rootViewController = navController
-//        navController.awakeFromNib()
+        // Override point for customization after application launch.
         return true
     }
 
