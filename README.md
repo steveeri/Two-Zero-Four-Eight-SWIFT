@@ -1,7 +1,9 @@
 # Two-Zero-Four-Eight-SWIFT
 ## An iOS Swift version of the classic 2048 game.
 
-![Screenshot](screenshot-2048.png)
+![Screenshot](screenshot1-2048.png)
+![Screenshot](screenshot2-2048.png)
+![Screenshot](screenshot3-2048.png)
 
 
 ## Game Overview
