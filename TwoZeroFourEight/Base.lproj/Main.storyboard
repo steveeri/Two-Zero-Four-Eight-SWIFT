@@ -31,13 +31,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI">
                                         <rect key="frame" x="14.5" y="0.0" width="346" height="333.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="400" verticalHuggingPriority="400" horizontalCompressionResistancePriority="550" verticalCompressionResistancePriority="550" image="summerland-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="700" verticalHuggingPriority="700" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="summerland-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
                                                 <rect key="frame" x="5" y="25" width="336" height="303.5"/>
                                             </imageView>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="5" left="5" bottom="5" right="5"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" alignment="firstBaseline" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-KQ-ATt">
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-KQ-ATt">
                                         <rect key="frame" x="40" y="333.5" width="295" height="333.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-uA-Ovv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">

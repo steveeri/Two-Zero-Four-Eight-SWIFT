@@ -52,6 +52,11 @@ class GameViewController: UIViewController {
         guard navigationController?.popViewController(animated: true) != nil else {
             dismiss(animated: true, completion: nil)
             //print("inside pop call")
+            
+            // Just check to see if the high score needs to be updates.
+            if (game.score > game.previousHighScore) {
+                StoredDataUtils.storedHSData(newHS: game.score)
+            }
             return
         }
     }
@@ -93,7 +98,6 @@ class GameViewController: UIViewController {
     @IBAction func moveRightTapped(_ sender: SSRoundedButton) {
         _ = game.actionMove(move: .RIGHT)
         postMoveChecksAndUpdates()
-
     }
     
     @IBAction func moveLeftTapped(_ sender: SSRoundedButton) {

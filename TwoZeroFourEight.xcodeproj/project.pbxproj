@@ -13,12 +13,14 @@
 		AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */; };
 		AA23DD4E20E0CF1300313CAC /* TwoZeroFourEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */; };
 		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
-		AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD5C20E1057000313CAC /* screenshot-2048.png */; };
 		AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */; };
 		AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81B57C20E4EF33006DF1E9 /* MainController.swift */; };
 		AACDF42C20E7804500B939E7 /* summerland-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AACDF42B20E7804500B939E7 /* summerland-logo.png */; };
 		AAD6E2F220E9EE7900780B00 /* StoredDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6E2F120E9EE7900780B00 /* StoredDataUtils.swift */; };
 		AAD6E2F420EA0EAC00780B00 /* ToastHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */; };
+		AAD9682F20EB184F00AE9A91 /* screenshot1-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD9682C20EB184D00AE9A91 /* screenshot1-2048.png */; };
+		AAD9683020EB184F00AE9A91 /* screenshot3-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD9682D20EB184D00AE9A91 /* screenshot3-2048.png */; };
+		AAD9683120EB184F00AE9A91 /* screenshot2-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD9682E20EB184E00AE9A91 /* screenshot2-2048.png */; };
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
 		AAFF906820E3779A00125B2F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906720E3779A00125B2F /* art.scnassets */; };
 		AAFF906A20E39E7200125B2F /* SSRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF906920E39E7100125B2F /* SSRoundedButton.swift */; };
@@ -46,12 +48,14 @@
 		AA23DD4F20E0CF1300313CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA23DD5820E0E6C000313CAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEight.swift; sourceTree = "<group>"; };
-		AA23DD5C20E1057000313CAC /* screenshot-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "screenshot-2048.png"; path = "../screenshot-2048.png"; sourceTree = "<group>"; };
 		AA44CA5A20E4E0D5003BA0C2 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		AA81B57C20E4EF33006DF1E9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		AACDF42B20E7804500B939E7 /* summerland-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "summerland-logo.png"; path = "art.scnassets/summerland-logo.png"; sourceTree = "<group>"; };
 		AAD6E2F120E9EE7900780B00 /* StoredDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDataUtils.swift; sourceTree = "<group>"; };
 		AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastHelper.swift; sourceTree = "<group>"; };
+		AAD9682C20EB184D00AE9A91 /* screenshot1-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot1-2048.png"; sourceTree = "<group>"; };
+		AAD9682D20EB184D00AE9A91 /* screenshot3-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot3-2048.png"; sourceTree = "<group>"; };
+		AAD9682E20EB184E00AE9A91 /* screenshot2-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot2-2048.png"; sourceTree = "<group>"; };
 		AAF75BB720E25F8200433928 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AAFF906720E3779A00125B2F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		AAFF906920E39E7100125B2F /* SSRoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRoundedButton.swift; sourceTree = "<group>"; };
@@ -112,7 +116,9 @@
 				AAFF906720E3779A00125B2F /* art.scnassets */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
 				AAFF906D20E3C48000125B2F /* .gitignore */,
-				AA23DD5C20E1057000313CAC /* screenshot-2048.png */,
+				AAD9682C20EB184D00AE9A91 /* screenshot1-2048.png */,
+				AAD9682E20EB184E00AE9A91 /* screenshot2-2048.png */,
+				AAD9682D20EB184D00AE9A91 /* screenshot3-2048.png */,
 				AA23DD5820E0E6C000313CAC /* README.md */,
 			);
 			path = TwoZeroFourEight;
@@ -209,9 +215,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD9683020EB184F00AE9A91 /* screenshot3-2048.png in Resources */,
 				AACDF42C20E7804500B939E7 /* summerland-logo.png in Resources */,
+				AAD9682F20EB184F00AE9A91 /* screenshot1-2048.png in Resources */,
 				AA44CA5B20E4E0D5003BA0C2 /* Game.storyboard in Resources */,
-				AA23DD5D20E1057000313CAC /* screenshot-2048.png in Resources */,
+				AAD9683120EB184F00AE9A91 /* screenshot2-2048.png in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,
 				AAFF906820E3779A00125B2F /* art.scnassets in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
