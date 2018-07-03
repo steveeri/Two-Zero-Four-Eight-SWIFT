@@ -252,10 +252,10 @@ public class TwoZeroFourEight {
 
     func actionMove(move : GameMoves) -> Bool {
         
-//        if (!hasMovesRemaining()) {
-//            gameOver = true
-//            return false
-//        }
+        if (!hasMovesRemaining()) {
+            gameOver = true
+            return false
+        }
 
         var result = false
         
@@ -270,7 +270,7 @@ public class TwoZeroFourEight {
             result = actionMoveRight()
         }
         
-        addNewTile()
+        if (result) { addNewTile() }
         return result
     }
 
@@ -308,9 +308,10 @@ public class TwoZeroFourEight {
         str += "|\(tiles[1])|\(tiles[5])|\(tiles[9])|\(tiles[13])|\n"
         str += "|\(tiles[2])|\(tiles[6])|\(tiles[10])|\(tiles[14])|\n"
         str += "|\(tiles[3])|\(tiles[7])|\(tiles[11])|\(tiles[15])|\n"
-        str += "---------\n"
+        str += "---------"
         return (str)
     }
+    
     
     class Transition {
 

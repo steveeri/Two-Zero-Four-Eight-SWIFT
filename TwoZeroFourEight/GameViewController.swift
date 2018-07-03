@@ -16,8 +16,8 @@ class GameViewController: UIViewController {
     
     // Create initial game object context
     var game : TwoZeroFourEight = TwoZeroFourEight()
-    var displayedNewHighScoreMsg = false
-    var displayedWonGameMsg = false
+    var displayNewHighScoreMsg = true
+    var displayWonGameMsg = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,8 @@ class GameViewController: UIViewController {
     private func setupForNewGamePanel() {
         // Do any additional setup after loading the view.
         let hs = StoredDataUtils.getHSData()
+        
+        if (hs < 50) { displayNewHighScoreMsg = false }
         
         if (game.score > hs) {
             StoredDataUtils.storedHSData(newHS: hs)
@@ -59,16 +61,16 @@ class GameViewController: UIViewController {
         score.text = String(game.score)
         highScore.text = String(game.previousHighScore)
         
-        if (!displayedWonGameMsg && game.acheivedTarget()) {
+        if (displayWonGameMsg && game.acheivedTarget()) {
             // Display game has been won
-            displayedWonGameMsg = true
+            displayWonGameMsg = false
             Toast.showPositiveMessage(message: game.WINNER)
             return
         }
 
-        if (!displayedNewHighScoreMsg && game.score > game.previousHighScore) {
+        if (displayNewHighScoreMsg && game.score > game.previousHighScore) {
             // display message for PB score
-            displayedNewHighScoreMsg = true
+            displayNewHighScoreMsg = false
             Toast.showPositiveMessage(message: game.NEW_HIGHSCORE)
             if (game.score > game.previousHighScore) {
                 StoredDataUtils.storedHSData(newHS: game.score)
@@ -91,6 +93,7 @@ class GameViewController: UIViewController {
     @IBAction func moveRightTapped(_ sender: SSRoundedButton) {
         _ = game.actionMove(move: .RIGHT)
         postMoveChecksAndUpdates()
+
     }
     
     @IBAction func moveLeftTapped(_ sender: SSRoundedButton) {
