@@ -1,6 +1,10 @@
 # Two-Zero-Four-Eight-SWIFT
 ## An iOS Swift version of the classic 2048 game.
 
+<img src="screenshot1-2048.png" alt="iPhone 8 - first screen display" width="100" height="200">
+<img src="screenshot2-2048.png" alt="iPhone 8 - game panel screenshot - in portrait" width="100" height="200">
+<img src="screenshot3-2048.png" alt="iPhone 8 - game panel screenshot - in landscape" width="200" height="100">
+
 ![Screenshot](screenshot1-2048.png)
 ![Screenshot](screenshot2-2048.png)
 ![Screenshot](screenshot3-2048.png)
