@@ -102,7 +102,7 @@ class GameViewController: UIViewController {
         
         if (!game.hasMovesRemaining()) {
             // display message no more moves
-            Toast.showPositiveMessage(message: game.NO_MORE_MOVES)
+            Toast.showNegativeMessage(message: game.NO_MORE_MOVES)
             if (game.score > game.previousHighScore) {
                 StoredDataUtils.storedHSData(newHS: game.score)
             }
