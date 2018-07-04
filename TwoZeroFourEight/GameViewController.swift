@@ -10,8 +10,8 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    @IBOutlet weak var score: UILabel!
-    @IBOutlet weak var highScore: UILabel!
+    @IBOutlet weak var score: SSRoundedLabel!
+    @IBOutlet weak var highScore: SSRoundedLabel!
     @IBOutlet weak var gameArea: UITextView!
     
     // Create initial game object context

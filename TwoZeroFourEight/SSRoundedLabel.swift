@@ -1,5 +1,5 @@
 //
-//  SSRoundedButton.swift
+//  SSRoundedLabel.swift
 //  TwoZeroFourEight
 //
 //  Created by Steve Richards on 27/06/2018.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class SSRoundedButton: UIButton {
+class SSRoundedLabel: UILabel {
 
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TwoZeroFourEight.xcodeproj">
+      location = "group:/Users/steve/Documents/Workspace/Two-Zero-Four-Eight-SWIFT/TwoZeroFourEight/SSRoundedLabel.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
