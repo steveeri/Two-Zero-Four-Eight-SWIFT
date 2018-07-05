@@ -1,5 +1,5 @@
 //
-//  TileViewDataSource.swift
+//  GamePanelView.swift
 //  TwoZeroFourEight
 //
 //  Created by Steve Richards on 26/06/2018.
@@ -9,11 +9,11 @@
 import UIKit
 
 protocol TileViewDataSource : class {
-    func valueForTile(sender:GameBoardView, position p:(Int,Int)) -> Int?
+    func valueForTile(sender:GamePanelView, position p:(Int,Int)) -> Int?
 }
 
 //configure the game board view
-class GameBoardView : SSRoundedUIView {
+class GamePanelView : SSRoundedUIView {
     //tiles
     var tiles:Dictionary<NSIndexPath, TileView> = [:]
     weak var datasource:TileViewDataSource?
@@ -59,7 +59,7 @@ class GameBoardView : SSRoundedUIView {
         let tile1 = tiles[pos1]
         let tile2 = tiles[pos2]
         
-        UIView.animate(withDuration: Constants.DURATION, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
+        UIView.animate(withDuration: Constants.QUICK_DURATION, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
             let f1 = tile1?.frame
             let label1 = tile1?.numberLabel
             let value1 = tile1?.value
@@ -75,17 +75,30 @@ class GameBoardView : SSRoundedUIView {
     }
     
     
-    func resetTile(Position p:(Int, Int)) {
+    func resetTile(_ transition: Transitions, Position p:(Int, Int)) {
         let (i,j) = p
         let pos = NSIndexPath(row: j, section: i)
-
         let tile = self.tiles[pos]
 
+        var timeDuration : TimeInterval
+        
+        switch transition {
+            case .Add:
+                timeDuration = Constants.LONG_DURATION
+            case .Merge:
+                timeDuration =  Constants.SLOW_DURATION
+            case .Clear:
+                timeDuration =  Constants.QUICK_DURATION
+            case .Slide:
+                timeDuration =  Constants.NORMAL_DURATION
+            default:
+                timeDuration =  Constants.ZERO_DURATION
+        }
+        
         tile?.value = self.datasource?.valueForTile(sender: self, position: p)
-        //animated
-//        UIView.animateWithDuration(Constants.duration) { 
-//            tile?.value = self.datasource?.valueForTile(self, position: p)
-//        }
+        UIView.animate(withDuration: timeDuration) {
+            tile?.value = self.datasource?.valueForTile(sender: self, position: p)
+        }
     }
 
 }

@@ -6,10 +6,11 @@
 //  Copyright © 2018 Steve Richards. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 
 
-class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource {
+class GameViewController: UIViewController, GameEngineProtocol,TileViewDataSource {
 
 
     @IBOutlet weak var scoreLabel: SSRoundedLabel!
@@ -35,19 +36,22 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
         }
     }
     
-    @IBOutlet weak var board: GameBoardView! {
+    @IBOutlet weak var gamePanel: GamePanelView! {
         didSet {
-            board.datasource = self
+            gamePanel.datasource = self
         }
     }
     
-    var model: GameModel?
+    var gameEngine: GameEngine?
+    var displayHighScoreMsg = true
+    var audioPlayer = AudioPlayerHelper()  // use default setting.
     
     //record current score
     var currentScore = 0 {
         didSet {
             self.scoreLabel.text = "\(self.currentScore)"
             self.scoreLabel.setNeedsDisplay()
+            userPB()
         }
     }
     
@@ -62,9 +66,9 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     let dimension: Int = Constants.DIMENSION
     let threshold: Int = Constants.THRESHHOLD
     
-    func valueForTile(sender: GameBoardView, position p: (Int, Int)) -> Int? {
+    func valueForTile(sender: GamePanelView, position p: (Int, Int)) -> Int? {
         let(x,y) = p
-        return model?.gameboard[x][y]
+        return gameEngine?.gameboard[x][y]
     }
     
     
@@ -73,9 +77,7 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
         if self.currentScore > previousHighScore {
             StoredDataUtils.storedHSData(newHS: self.currentScore)
             self.highestScore = self.currentScore
-            if highestScore > 50 {
-                ToastHelper.showPositiveMessage(message: Constants.NEW_HIGH_SCORE)
-            }
+            userPB()
         }
     }
 
@@ -91,7 +93,7 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = GameModel(dimension:Constants.DIMENSION, threshold:Constants.THRESHHOLD, delegate: self)
+        gameEngine = GameEngine(dimension:Constants.DIMENSION, threshold:Constants.THRESHHOLD, delegate: self)
         setupStartUI()
     }
     
@@ -102,21 +104,18 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     }
     
     
-    // Start / Reset game here
-    // Start / Reset game here
+    // Start / Reset game here ->
+    // Start / Reset game here ->
     func setupStartUI() {
-        //reset score
-        //self.scoreLable?.text = "Score\n0"
         
         self.currentScore = 0
         
-        //set up tiles
-        //self.board?.resetBoard()
-        self.model?.resetBoard()
+        // Reset game panel
+        self.gameEngine?.resetGamePanel()
         
         //insert two new tile
-        self.model!.insertNewTile(value: 2)
-        self.model!.insertNewTile(value: 2)
+        self.gameEngine!.insertNewTile(value: 2)
+        self.gameEngine!.insertNewTile(value: 2)
         
         //add gestures
         self.addGestures()
@@ -124,31 +123,44 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     }
     
     
-    //#pragma - mark procotols
-    func updateTileValue(position: (Int,Int)) {
-        //self.board?.resetTile(value, Position: p)
-        self.board.resetTile(Position: position)
+    // The method is called under a few circumstances.  Swap, Clear, and Merge.
+    func updateTileValue(_ transition: Transitions, position: (Int,Int)) {
+        self.gamePanel.resetTile(transition, Position: position)
     }
     
+    // User has beaten previous highscore value.
+    func userPB() {
+        // pop up an alert to encourage the player to go on
+        if displayHighScoreMsg {
+            if currentScore > highestScore && highestScore > 100 {
+                displayHighScoreMsg = false
+                ToastHelper.showPositiveMessage(message: Constants.NEW_HIGH_SCORE)
+                audioPlayer.playSound(filename: Constants.HORRAY_AUDIO_FN)
+            }
+        }
+    }
     
     func userWin() {
         saveHighestScore()
         // pop up an alert to reminder the user that you have won the game
         ToastHelper.showPositiveMessage(message: Constants.WINNER)
+        audioPlayer.playSound(filename: Constants.HORRAY_AUDIO_FN)
     }
-    
+
     
     func userFail() {
         saveHighestScore()
         ToastHelper.showNegativeMessage(message: Constants.NO_MORE_MOVES)
+        audioPlayer.playSound(filename: Constants.SAD_AUDIO_FN)
     }
     
     
     func swapTilePositions(tileA A: (Int, Int), tileB B:(Int, Int)) {
-        self.board.swapTilePositions(TileA: A, TileB:B)
+        self.gamePanel.swapTilePositions(TileA: A, TileB:B)
     }
     
     
+    //add gestures
     //add gestures
     func addGestures() {
         let up = UISwipeGestureRecognizer(target: self, action: #selector(upAction))
@@ -178,11 +190,11 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     
     @objc func upAction() {
 
-        let score = self.model?.performSwipe(direction: MoveDirection.Up)
+        let score = self.gameEngine?.performSwipe(direction: MoveDirection.Up)
         self.currentScore += score!
         var state:(String,String?)
         
-        state = self.model!.determineGameState()
+        state = self.gameEngine!.determineGameState()
         if state.0 == "end" && state.1 == "win" {
             self.userWin()
         } else if (state.0 == "end" && state.1 == "lose") {
@@ -191,11 +203,11 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     }
     
     @objc func downAction() {
-        let score = self.model?.performSwipe(direction: MoveDirection.Down)
+        let score = self.gameEngine?.performSwipe(direction: MoveDirection.Down)
         self.currentScore += score!
         var state:(String,String?)
         
-        state = self.model!.determineGameState()
+        state = self.gameEngine!.determineGameState()
         if state.0 == "end" && state.1 == "win" {
             self.userWin()
         } else if (state.0 == "end" && state.1 == "lose") {
@@ -204,11 +216,11 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     }
     
     @objc func leftAction() {
-        let score = self.model?.performSwipe(direction: MoveDirection.Left)
+        let score = self.gameEngine?.performSwipe(direction: MoveDirection.Left)
         self.currentScore += score!
         var state:(String,String?)
         
-        state = self.model!.determineGameState()
+        state = self.gameEngine!.determineGameState()
         if state.0 == "end" && state.1 == "win" {
             self.userWin()
         } else if (state.0 == "end" && state.1 == "lose") {
@@ -217,11 +229,11 @@ class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource
     }
     
     @objc func rightAction() {
-        let score = self.model?.performSwipe(direction: MoveDirection.Right)
+        let score = self.gameEngine?.performSwipe(direction: MoveDirection.Right)
         self.currentScore += score!
         var state:(String,String?)
       
-        state = self.model!.determineGameState()
+        state = self.gameEngine!.determineGameState()
         if state.0 == "end" && state.1 == "win" {
             self.userWin()
         } else if (state.0 == "end" && state.1 == "lose") {

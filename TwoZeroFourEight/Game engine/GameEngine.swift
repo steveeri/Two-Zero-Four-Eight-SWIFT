@@ -1,5 +1,5 @@
 //
-//  GameModel.swift
+//  GameEngine.swift
 //  TwoZeroFourEight
 //
 //  Created by Steve Richards on 26/06/2018.
@@ -9,11 +9,12 @@
 import Foundation
 
 
-protocol GameModelProtocol {
-    func updateTileValue(position:(Int,Int))
+protocol GameEngineProtocol {
+    func updateTileValue(_: Transitions, position: (Int,Int))
+    func swapTilePositions(tileA A: (Int, Int), tileB B:(Int, Int))
+    func userPB()
     func userWin()
     func userFail()
-    func swapTilePositions(tileA A: (Int, Int), tileB B:(Int, Int))
 }
 
 enum MoveDirection {
@@ -23,21 +24,32 @@ enum MoveDirection {
     case Right
 }
 
-class GameModel {
-    let dimension:Int
-    let threshold:Int
-    typealias TileObject = Int
-    var gameboard:[[TileObject?]] = Array(repeating: Array(repeating: nil, count: Constants.DIMENSION), count: Constants.DIMENSION)
-    let delegate:GameModelProtocol
+
+enum Transitions {
+    case Add
+    case Slide
+    case Merge
+    case Clear
+    case Reset
+}
+
+class GameEngine {
     
-    init(dimension: Int, threshold: Int, delegate: GameModelProtocol) {
+    let dimension: Int
+    let threshold: Int
+    typealias TileObject = Int
+    var gameboard: [[TileObject?]] = Array(repeating: Array(repeating: nil, count: Constants.DIMENSION), count: Constants.DIMENSION)
+    let delegate: GameEngineProtocol
+    
+    // Constructor
+    init(dimension: Int, threshold: Int, delegate: GameEngineProtocol) {
         self.dimension = dimension
         self.threshold = threshold
         self.delegate = delegate
     }
     
     
-    func moveTiles(floor f:(Int, Int), ceiling c: (Int, Int)) -> Bool {
+    func slideTiles(floor f:(Int, Int), ceiling c: (Int, Int)) -> Bool {
         
         var moved = false
         
@@ -58,7 +70,6 @@ class GameModel {
                     
                     repeat{
                         swapTile(tileA: (f.0,yy-inc), TileB: (f.0, yy))
-                        //swapTile1(tileA: (f.0,yy-inc), tileB: (f.0, yy))
                         yy -= inc
                     } while(validPosition(position: (f.0, yy-inc)) && (self.gameboard[f.0][yy-inc]) == nil)
                 }
@@ -71,7 +82,6 @@ class GameModel {
             let start = f.0
             let end = c.0
             for x in stride(from: start, to: end+inc, by: inc) {
-                //print("x = \(x)")
                 if self.gameboard[x][f.1] == nil{
                     emptyBefore = true
                     continue
@@ -83,7 +93,6 @@ class GameModel {
                     
                     repeat {
                         swapTile(tileA: (xx-inc,f.1), TileB: (xx, f.1))
-                        //swapTile1(tileA: (xx-inc,f.1), tileB: (xx, f.1))
                         xx -= inc
                     } while(validPosition(position: (xx-inc, f.1)) && self.gameboard[xx-inc][f.1] == nil)
                 }
@@ -99,24 +108,13 @@ class GameModel {
         let (Bx,By) = B
         let valueA = self.gameboard[Ax][Ay]
         self.gameboard[Ax][Ay] = self.gameboard[Bx][By]
-        delegate.updateTileValue(position: (Ax, Ay))
+        delegate.updateTileValue(Transitions.Slide, position: (Ax, Ay))
         self.gameboard[Bx][By] = valueA
-        delegate.updateTileValue(position: (Bx, By))
+        delegate.updateTileValue(Transitions.Slide, position: (Bx, By))
     }
     
-    
-    func swapTile1(tileA A:(Int, Int), tileB B:(Int, Int)) -> Void {
-        assert(validPosition(position: A) == true && validPosition(position: B) == true)
-        let (Ax,Ay) = A
-        let (Bx,By) = B
-        let valueA = self.gameboard[Ax][Ay]
-        self.gameboard[Ax][Ay] = self.gameboard[Bx][By]
-        self.gameboard[Bx][By] = valueA
-        delegate.swapTilePositions(tileA: A, tileB: B)
-    }
-    
-    
-    func combineTiles(floor f:(Int, Int), ceiling c: (Int, Int), performAction:Bool) -> (Bool,Int) {
+
+    func mergeTiles(floor f:(Int, Int), ceiling c: (Int, Int), performAction:Bool) -> (Bool,Int) {
         var moved = false
         var  score = 0
         
@@ -141,9 +139,9 @@ class GameModel {
                             self.gameboard[f.0][y]  = 2*value
                             // USE TO TEST BIG NUMBERS  self.gameboard[f.0][y]  = 1024
                             score += 2*value
-                            delegate.updateTileValue(position: (f.0,y))
+                            delegate.updateTileValue(Transitions.Merge, position: (f.0,y))
                             self.gameboard[f.0][y+inc] = nil
-                            delegate.updateTileValue(position: (f.0, y+inc))
+                            delegate.updateTileValue(Transitions.Clear, position: (f.0, y+inc))
 
                         } else { return (moved,score) }
                     }
@@ -170,9 +168,9 @@ class GameModel {
                             let value = self.gameboard[x][f.1]!
                             self.gameboard[x][f.1] = 2*value
                             score += 2*value
-                            delegate.updateTileValue(position: (x,f.1))
+                            delegate.updateTileValue(Transitions.Merge, position: (x,f.1))
                             self.gameboard[x+inc][f.1] = nil
-                            delegate.updateTileValue(position: (x+inc, f.1))
+                            delegate.updateTileValue(Transitions.Clear, position: (x+inc, f.1))
                         } else {
                            return (moved,score)
                         }
@@ -181,7 +179,7 @@ class GameModel {
             }
         }
         
-        if moved { _ = moveTiles(floor: f, ceiling: c) }
+        if moved { _ = slideTiles(floor: f, ceiling: c) }
         return (moved,score)
     }
     
@@ -190,7 +188,7 @@ class GameModel {
         var atLeastOneMove = false
         var score = 0
         
-        for i in 0..<self.dimension{
+        for i in 0..<self.dimension {
             var floor:(Int, Int)
             var ceiling:(Int, Int)
             switch direction{
@@ -199,38 +197,32 @@ class GameModel {
             case .Right: floor = (i, self.dimension-1); ceiling = (i, 0)
             case .Up:    floor = (0, i);                ceiling = (self.dimension-1,i)
             }
-            //print("in the GameModel::performSwipe, floor:\(floor)")
-            //print("in the GameModel::performSwipe, ceiling\(ceiling)")
             
-            //1. move all tiles
-            atLeastOneMove = moveTiles(floor: floor, ceiling: ceiling) == true || (atLeastOneMove == true)
-            //print("atLeastOneMove = \(atLeastOneMove)")
+            atLeastOneMove = slideTiles(floor: floor, ceiling: ceiling) == true || (atLeastOneMove == true)
             
-            //2. combine if has any
             var atLeastOneMove1 = false
             
             var currentScore = 0
-            (atLeastOneMove1,currentScore) = combineTiles(floor:floor, ceiling:ceiling, performAction: true)
+            (atLeastOneMove1,currentScore) = mergeTiles(floor:floor, ceiling:ceiling, performAction: true)
             
             score += currentScore
             atLeastOneMove = (atLeastOneMove == true || atLeastOneMove1 == true)
         }
         
         if atLeastOneMove {
-            //gengerate a random new tile at a random position
+            // Generate a random new tile at a random position
             insertRandomNewTile()
         }
-        //insertRandomNewTile()
         return score
     }
 
     
-    func findAllOpenSpaces() -> [(Int, Int)] {
+    func findEmptySpaces() -> [(Int, Int)] {
         var open = [(Int, Int)]()
         
         for i in 0..<self.dimension {
             for j in 0..<self.dimension{
-                if self.gameboard[i][j] == nil{
+                if self.gameboard[i][j] == nil {
                     open.append((i,j))
                 }
             }
@@ -240,42 +232,46 @@ class GameModel {
     
     
     func determineGameState() -> (String, String?) {
-        // TODO comment
+        // Check situation status report following move action
         //1.(end, win) 2.(end, lose) 3.(continue, nil)
         
-        let spaces = findAllOpenSpaces()
+        let spaces = findEmptySpaces()
         if spaces.count == 0 {
-            // TODO
+            // No spaces left at this stage. Guys we are pretty much done here... can any tiles be merged?
             var moved = false
 
             for i in 0..<self.dimension {
-                if combineTiles(floor: (i, 0), ceiling: (i, self.dimension-1), performAction: false).0 == true {
+                if mergeTiles(floor: (i, 0), ceiling: (i, self.dimension-1), performAction: false).0 == true {
                     moved = true
                     break
                 }
                 
-                if combineTiles(floor: (i, self.dimension-1), ceiling: (i, 0), performAction: false).0 == true {
+                if mergeTiles(floor: (i, self.dimension-1), ceiling: (i, 0), performAction: false).0 == true {
                     moved = true
                     break
                 }
                 
-                if combineTiles(floor: (0, i), ceiling: (self.dimension-1, i), performAction: false).0 == true {
+                if mergeTiles(floor: (0, i), ceiling: (self.dimension-1, i), performAction: false).0 == true {
                     moved = true
                     break
                 }
                 
-                if combineTiles(floor: (self.dimension-1, i), ceiling: (0, i), performAction: false).0 == true {
+                if mergeTiles(floor: (self.dimension-1, i), ceiling: (0, i), performAction: false).0 == true {
                     moved = true
                     break
                 }
             }
             
+            // Do we proceed or are we finished!
             if moved == true { return ("continue", nil) } else { return ("end", "lose") }
+            
         }else {
-            // TODO
+            // Check to see if the game is won e.g. tile found is 2048!
             for i in 0..<self.dimension {
                 for j in 0..<self.dimension {
-                    if self.gameboard[i][j] != nil && Int(self.gameboard[i][j]!) == self.threshold { return ("end", "win") }
+                    if (self.gameboard[i][j] != nil && Int(self.gameboard[i][j]!) == self.threshold) {
+                        return ("end", "win")
+                    }
                 }
             }
             return ("continue", nil)
@@ -284,9 +280,9 @@ class GameModel {
     
     
     func insertRandomNewTile() {
-        //randomly select 4 or 2
-        let separator = Int(100*Constants.RANDOM_RATIO)
-        let num = Int(arc4random())%100
+        // Randomly select 4 or 2
+        let separator = Int(100 * Constants.RANDOM_RATIO)
+        let num = Int(arc4random()) % 100
         var value:Int
         
         if(num >= separator) { value = 4 } else { value = 2 }
@@ -295,18 +291,18 @@ class GameModel {
     
     
     func insertNewTile(value: Int) {
-        //find all the open spaces
-        let open = findAllOpenSpaces()
+        // Find all the open spaces
+        let open = findEmptySpaces()
         
         if open.count > 0 {
             //pick one randomly
             let size = open.count
-            let index = Int(arc4random())%size
+            let index = Int(arc4random()) % size
             let (x,y) = open[index]
             
             //change the value
             self.gameboard[x][y] = value
-            delegate.updateTileValue(position: (x,y))
+            delegate.updateTileValue(Transitions.Add, position: (x,y))
         }
     }
     
@@ -317,11 +313,11 @@ class GameModel {
     }
     
     
-    func resetBoard() {
+    func resetGamePanel() {
         for i in 0..<self.dimension {
             for j in 0..<self.dimension {
                 self.gameboard[i][j] = nil
-                delegate.updateTileValue(position: (i,j))
+                delegate.updateTileValue(Transitions.Clear, position: (i,j))
             }
         }
     }
