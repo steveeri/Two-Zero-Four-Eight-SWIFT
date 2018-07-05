@@ -1,14 +1,11 @@
 # Two-Zero-Four-Eight-SWIFT
 ## An iOS Swift version of the classic 2048 game.
 
-<img src="screenshots/game-app-icon-port-2048.png" alt="iPhone 8 Plus - phone showing app icon in place" width="120" height="240">
-<img src="screenshots/game-main-port-2048.png" alt="iPhone 8 Plus - first screen display in portrait" width="120" height="240">
-<img src="screenshots/game-main-land-2048.png" alt="iPhone 8 Plus - first screen display in landscape" width="240" height="120">
-<img src="screenshots/game-port-2048.png" alt="iPhone 8 Plus - game screen display in portrait" width="120" height="240">
-<img src="screenshots/game-land-2048.png" alt="iPhone 8 Plus - game screen display in landscape" width="240" height="120">
-<img src="screenshots/game-with-mesg-port-2048.png" alt="iPhone 8 Plus - game screen display with message in portrait" width="120" height="240">
-<img src="screenshots/game-with-mesg-land-2048.png" alt="iPhone 8 Plus - game screen display with message in landscape" width="240" height="120">
-<img src="screenshots/game-with-mesg2-port-2048.png" alt="iPhone 8 Plus - game screen display with message in portrait" width="120" height="240">
+<img src="screenshots/game-app-icon-port-2048.png" alt="iPhone 8 Plus - phone showing app icon in place" width="120" height="240"> <img src="screenshots/game-main-port-2048.png" alt="iPhone 8 Plus - first screen display in portrait" width="120" height="240"> <img src="screenshots/game-main-land-2048.png" alt="iPhone 8 Plus - first screen display in landscape" width="240" height="120">
+
+<img src="screenshots/game-port-2048.png" alt="iPhone 8 Plus - game screen display in portrait" width="120" height="240"> <img src="screenshots/game-land-2048.png" alt="iPhone 8 Plus - game screen display in landscape" width="240" height="120"> <img src="screenshots/game-with-mesg-port-2048.png" alt="iPhone 8 Plus - game screen display with message in portrait" width="120" height="240">
+
+<img src="screenshots/game-with-mesg-land-2048.png" alt="iPhone 8 Plus - game screen display with message in landscape" width="240" height="120"> <img src="screenshots/game-with-mesg2-port-2048.png" alt="iPhone 8 Plus - game screen display with message in portrait" width="120" height="240">
 
 
 ## Game Overview
