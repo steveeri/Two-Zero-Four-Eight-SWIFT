@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zgG-mO-uDK">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,29 +22,33 @@
                         <viewControllerLayoutGuide type="top" id="0lV-bc-xLK"/>
                         <viewControllerLayoutGuide type="bottom" id="dgu-WT-4DO"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DM2-EV-6yV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="DM2-EV-6yV" userLabel="Main View">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YnO-Rz-Ezn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YnO-Rz-Ezn" userLabel="main stack view">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI">
-                                        <rect key="frame" x="14.5" y="0.0" width="346" height="333.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="650" verticalCompressionResistancePriority="650" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yYR-Tv-9vI" userLabel="logo stack view">
+                                        <rect key="frame" x="15" y="0.0" width="345" height="389"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="700" verticalHuggingPriority="700" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="summerland-logo.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-Hb-rBJ">
-                                                <rect key="frame" x="5" y="25" width="336" height="303.5"/>
+                                                <rect key="frame" x="5" y="49" width="335" height="335"/>
                                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.80000000000000004" height="0.80000000000000004"/>
                                             </imageView>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="5" left="5" bottom="5" right="5"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-KQ-ATt">
-                                        <rect key="frame" x="40" y="333.5" width="295" height="333.5"/>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-KQ-ATt" userLabel="button stack view">
+                                        <rect key="frame" x="40" y="389" width="295" height="389"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-he-gyH" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="142" width="140" height="50"/>
+                                                <rect key="frame" x="0.0" y="169.66666666666663" width="140" height="50"/>
                                                 <color key="backgroundColor" red="0.88896757364273071" green="0.43384018540382385" blue="0.21371789276599884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="67h-pJ-yPi"/>
+                                                    <constraint firstAttribute="height" constant="50" id="odt-qC-SJF"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Quit">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -56,12 +61,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-uA-Ovv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
-                                                <rect key="frame" x="155" y="142" width="140" height="50"/>
+                                                <rect key="frame" x="155" y="169.66666666666663" width="140" height="50"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="38j-Sw-Q4M"/>
-                                                    <constraint firstAttribute="height" constant="50" id="9to-ti-gzW"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Play 2048">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,21 +76,27 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="iuM-he-gyH" firstAttribute="height" secondItem="cFn-uA-Ovv" secondAttribute="height" id="bR8-AE-rh9"/>
-                                            <constraint firstItem="cFn-uA-Ovv" firstAttribute="width" secondItem="iuM-he-gyH" secondAttribute="width" id="gX4-Ou-C3s"/>
+                                            <constraint firstItem="iuM-he-gyH" firstAttribute="width" secondItem="cFn-uA-Ovv" secondAttribute="width" id="EWW-TK-ISf"/>
+                                            <constraint firstItem="iuM-he-gyH" firstAttribute="top" secondItem="cFn-uA-Ovv" secondAttribute="top" id="KCc-NF-7qS"/>
+                                            <constraint firstItem="cFn-uA-Ovv" firstAttribute="leading" secondItem="iuM-he-gyH" secondAttribute="trailing" constant="15" id="dhn-aO-JeH"/>
+                                            <constraint firstItem="iuM-he-gyH" firstAttribute="height" secondItem="cFn-uA-Ovv" secondAttribute="height" id="pwp-zY-RWL"/>
                                         </constraints>
                                         <variation key="widthClass=compact" alignment="center"/>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="4W9-KQ-ATt" firstAttribute="leading" secondItem="YnO-Rz-Ezn" secondAttribute="leading" constant="40" id="E5d-BH-cAS"/>
+                                    <constraint firstItem="yYR-Tv-9vI" firstAttribute="leading" secondItem="YnO-Rz-Ezn" secondAttribute="leading" constant="15" id="T0E-nb-wkB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.018421582877635956" green="0.0" blue="3.2199743145611137e-05" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="YnO-Rz-Ezn" secondAttribute="trailing" id="7Kr-Ww-UW0"/>
-                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="top" secondItem="DM2-EV-6yV" secondAttribute="top" id="WFA-Fs-A0b"/>
-                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="bottom" secondItem="dgu-WT-4DO" secondAttribute="top" id="Zmy-ck-mPE"/>
-                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leading" id="j6d-Rt-G08"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="top" secondItem="DM2-EV-6yV" secondAttribute="top" id="QVO-zf-cIn"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="leading" secondItem="DM2-EV-6yV" secondAttribute="leading" id="UaO-be-c2l"/>
+                            <constraint firstAttribute="trailing" secondItem="YnO-Rz-Ezn" secondAttribute="trailing" id="dXH-dS-Ddn"/>
+                            <constraint firstItem="YnO-Rz-Ezn" firstAttribute="bottom" secondItem="dgu-WT-4DO" secondAttribute="top" id="sZN-K5-qzf"/>
                         </constraints>
                     </view>
                 </viewController>

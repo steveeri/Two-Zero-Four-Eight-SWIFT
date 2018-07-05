@@ -1,7 +1,15 @@
 # Two-Zero-Four-Eight-SWIFT
 ## An iOS Swift version of the classic 2048 game.
 
-<img src="screenshot1-2048.png" alt="iPhone 8 - first screen display" width="120" height="240"> <img src="screenshot2-2048.png" alt="iPhone 8 - game panel screenshot - in portrait" width="120" height="240"> <img src="screenshot3-2048.png" alt="iPhone 8 - game panel screenshot - in landscape" width="240" height="120">
+<img src="game-app-icon-port-2048.png" alt="iPhone 8 Plus - phone showing app icon in place" width="120" height="240">
+<img src="game-main-port-2048.png" alt="iPhone 8 Plus - first screen display in portrait" width="120" height="240">
+<img src="game-main-land-2048.png" alt="iPhone 8 Plus - first screen display in landscape" width="240" height="120">
+<img src="game-port-2048.png" alt="iPhone 8 Plus - game screen display in portrait" width="120" height="240">
+<img src="game-land-2048.png" alt="iPhone 8 Plus - game screen display in landscape" width="240" height="120">
+<img src="game-with-mesg-port-2048.png" alt="iPhone 8 Plus - game screen display with message in portrait" width="120" height="240">
+<img src="game-with-mesg-land-2048.png" alt="iPhone 8 Plus - game screen display with message in landscape" width="240" height="120">
+<img src="game-with-mesg2-port-2048.png" alt="iPhone 8 Plus - game screen display with message in portrait" width="120" height="240">
+
 
 ## Game Overview
 

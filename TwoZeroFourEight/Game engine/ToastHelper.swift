@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Toast {
+class ToastHelper {
     
     class private func showAlert(backgroundColor: UIColor, textColor:UIColor, message:String) {
         
@@ -17,7 +17,7 @@ class Toast {
         let label = UILabel(frame: CGRect.zero)
         label.textAlignment = NSTextAlignment.center
         label.text = message
-        label.font = UIFont(name: "", size: 15)
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         label.adjustsFontSizeToFitWidth = true
         label.backgroundColor =  backgroundColor // set bg colour
         label.textColor = textColor //set text colour
@@ -27,7 +27,7 @@ class Toast {
         label.layer.shadowColor = UIColor.gray.cgColor
         label.layer.shadowOffset = CGSize(width: 4, height: 3)
         label.layer.shadowOpacity = 0.3
-        label.frame = CGRect(x: appDelegate.window!.frame.size.width, y: 64, width: appDelegate.window!.frame.size.width, height: 44)
+        label.frame = CGRect(x: appDelegate.window!.frame.size.width, y: 80, width: appDelegate.window!.frame.size.width, height: 44)
         
         label.alpha = 1
         

@@ -9,7 +9,7 @@
 import Foundation
 
 struct gameKeys {
-    static let highestScore = "highestScoreKey"
+    static let highestScore = "highestScore"
 }
 
 class StoredDataUtils {
@@ -18,6 +18,7 @@ class StoredDataUtils {
     static func storedHSData(newHS : Int) {
         let defaults = UserDefaults.standard
         defaults.set(newHS, forKey: gameKeys.highestScore)
+        defaults.synchronize()
     }
     
     // Get highscore data from user defaults

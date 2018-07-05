@@ -8,144 +8,224 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
-    
-    @IBOutlet weak var score: SSRoundedLabel!
-    @IBOutlet weak var highScore: SSRoundedLabel!
-    @IBOutlet weak var gameArea: UITextView!
-    
-    // Create initial game object context
-    var game : TwoZeroFourEight = TwoZeroFourEight()
-    var displayNewHighScoreMsg = true
-    var displayWonGameMsg = true
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //print("viewDidLoad called")
-        addSwipeListeners()
-        setupForNewGamePanel()
-    }
-    
-    // Setup the game panel for the first or new game rounds...
-    private func setupForNewGamePanel() {
-        // Do any additional setup after loading the view.
-        var hs = StoredDataUtils.getHSData()
-        
-        if (game.score > hs) {
-            StoredDataUtils.storedHSData(newHS: game.score)
-            hs = game.score
-        }
-        
-        game = TwoZeroFourEight(hs)
-        gameArea.text = game.toString()
-        score.text = String(game.score)
-        highScore.text = String(game.previousHighScore)
+class GameViewController: UIViewController, GameModelProtocol,TileViewDataSource {
 
-        if (hs < 50) { displayNewHighScoreMsg = false }
-    }
 
-    @IBAction func newGameButtonTapped(_ sender: SSRoundedButton) {
-        //print(sender.currentTitle!)
-        setupForNewGamePanel()
-    }
-
-    @IBAction func quitButtonTapped(_ sender: SSRoundedButton) {
-        //print(sender.currentTitle!)
-
+    @IBOutlet weak var scoreLabel: SSRoundedLabel!
+  
+    @IBAction func quitTapped(_ sender: SSRoundedButton) {
         // Just check to see if the high score needs to be updates.
-        if (game.score > game.previousHighScore) {
-            StoredDataUtils.storedHSData(newHS: game.score)
-        }
-
+        saveHighestScore()
+        
+        // Suspend game. Leave it to ios to cleanup if not restarted.
         UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
         return
-        
-//        guard navigationController?.popViewController(animated: true) != nil else {
-//            dismiss(animated: true, completion: nil)
-//            //print("inside pop call")
-//
-//            // Just check to see if the high score needs to be updates.
-//            if (game.score > game.previousHighScore) {
-//                StoredDataUtils.storedHSData(newHS: game.score)
-//            }
-//            return
-//        }
     }
-
-    private func postMoveChecksAndUpdates() {
-        
-        gameArea.text = game.toString()
-        score.text = String(game.score)
-        highScore.text = String(game.previousHighScore)
-        
-        if (displayWonGameMsg && game.acheivedTarget()) {
-            // Display game has been won
-            displayWonGameMsg = false
-            Toast.showPositiveMessage(message: game.WINNER)
-            return
-        }
-
-        if (displayNewHighScoreMsg && game.score > game.previousHighScore) {
-            // display message for PB score
-            displayNewHighScoreMsg = false
-            Toast.showPositiveMessage(message: game.NEW_HIGHSCORE)
-            if (game.score > game.previousHighScore) {
-                StoredDataUtils.storedHSData(newHS: game.score)
-            }
-            return
-        }
-        
-        if (!game.hasMovesRemaining()) {
-            // display message no more moves
-            Toast.showNegativeMessage(message: game.NO_MORE_MOVES)
-            if (game.score > game.previousHighScore) {
-                StoredDataUtils.storedHSData(newHS: game.score)
-            }
-            return
+    
+    @IBAction func newGameTapped(_ sender: SSRoundedButton) {
+        // Just check to see if the high score needs to be updates.
+        saveHighestScore()
+        setupStartUI()
+    }
+    
+    @IBOutlet weak var highestScoreLabel: SSRoundedLabel! {
+        didSet {
+            highestScoreLabel.text = "0"
         }
     }
     
-    // Affix gesture ALL 4 COMPASS POINT listeners to controller.
-    func addSwipeListeners() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
-
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
-
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeUp.direction = UISwipeGestureRecognizerDirection.up
-        self.view.addGestureRecognizer(swipeUp)
-
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
-        self.view.addGestureRecognizer(swipeDown)
+    @IBOutlet weak var board: GameBoardView! {
+        didSet {
+            board.datasource = self
+        }
     }
     
-    /* BELOW:  RESPOND TO GAME MOVE INSTRUCTIONS */
-    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            
-            switch swipeGesture.direction {
-            case UISwipeGestureRecognizerDirection.right:
-                //print("Swiped right")
-                _ = game.actionMove(move: .RIGHT)
-            case UISwipeGestureRecognizerDirection.down:
-                //print("Swiped down")
-                _ = game.actionMove(move: .DOWN)
-            case UISwipeGestureRecognizerDirection.left:
-                //print("Swiped left")
-                _ = game.actionMove(move: .LEFT)
-            case UISwipeGestureRecognizerDirection.up:
-                //print("Swiped up")
-                _ = game.actionMove(move: .UP)
-            default:
-                return
+    var model: GameModel?
+    
+    //record current score
+    var currentScore = 0 {
+        didSet {
+            self.scoreLabel.text = "\(self.currentScore)"
+            self.scoreLabel.setNeedsDisplay()
+        }
+    }
+    
+    var highestScore = 0 {
+        didSet{
+            //saveHighestScore()
+            highestScoreLabel.text = "\(self.highestScore)"
+            self.highestScoreLabel.setNeedsDisplay()
+        }
+    }
+    
+    let dimension: Int = Constants.DIMENSION
+    let threshold: Int = Constants.THRESHHOLD
+    
+    func valueForTile(sender: GameBoardView, position p: (Int, Int)) -> Int? {
+        let(x,y) = p
+        return model?.gameboard[x][y]
+    }
+    
+    
+    func saveHighestScore() {
+        let previousHighScore = StoredDataUtils.getHSData()
+        if self.currentScore > previousHighScore {
+            StoredDataUtils.storedHSData(newHS: self.currentScore)
+            self.highestScore = self.currentScore
+            if highestScore > 50 {
+                ToastHelper.showPositiveMessage(message: Constants.NEW_HIGH_SCORE)
             }
-            postMoveChecksAndUpdates()
+        }
+    }
+
+    
+    func readHighestScore() -> Int {
+        return StoredDataUtils.getHSData()
+    }
+    
+    
+    //
+    // VIEW DID LOAD
+    // Setup game board
+    //
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        model = GameModel(dimension:Constants.DIMENSION, threshold:Constants.THRESHHOLD, delegate: self)
+        setupStartUI()
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // Start / Reset game here
+    // Start / Reset game here
+    func setupStartUI() {
+        //reset score
+        //self.scoreLable?.text = "Score\n0"
+        
+        self.currentScore = 0
+        
+        //set up tiles
+        //self.board?.resetBoard()
+        self.model?.resetBoard()
+        
+        //insert two new tile
+        self.model!.insertNewTile(value: 2)
+        self.model!.insertNewTile(value: 2)
+        
+        //add gestures
+        self.addGestures()
+        self.highestScore = readHighestScore()
+    }
+    
+    
+    //#pragma - mark procotols
+    func updateTileValue(position: (Int,Int)) {
+        //self.board?.resetTile(value, Position: p)
+        self.board.resetTile(Position: position)
+    }
+    
+    
+    func userWin() {
+        saveHighestScore()
+        // pop up an alert to reminder the user that you have won the game
+        ToastHelper.showPositiveMessage(message: Constants.WINNER)
+    }
+    
+    
+    func userFail() {
+        saveHighestScore()
+        ToastHelper.showNegativeMessage(message: Constants.NO_MORE_MOVES)
+    }
+    
+    
+    func swapTilePositions(tileA A: (Int, Int), tileB B:(Int, Int)) {
+        self.board.swapTilePositions(TileA: A, TileB:B)
+    }
+    
+    
+    //add gestures
+    func addGestures() {
+        let up = UISwipeGestureRecognizer(target: self, action: #selector(upAction))
+        up.numberOfTouchesRequired = 1
+        up.direction = .up
+        self.view.addGestureRecognizer(up)
+        
+        let down = UISwipeGestureRecognizer(target: self, action: #selector(downAction))
+        self.view.addGestureRecognizer(down)
+        down.numberOfTouchesRequired = 1
+        down.direction = .down
+        
+        let left = UISwipeGestureRecognizer(target: self, action: #selector(leftAction))
+        self.view.addGestureRecognizer(left)
+        left.numberOfTouchesRequired = 1
+        left.direction = .left
+        
+        let right = UISwipeGestureRecognizer(target: self, action: #selector(rightAction))
+        self.view.addGestureRecognizer(right)
+        right.numberOfTouchesRequired = 1
+        right.direction = .right
+    }
+
+
+    // Respond to swipe actions below
+    // Respond to swipe actions below
+    
+    @objc func upAction() {
+
+        let score = self.model?.performSwipe(direction: MoveDirection.Up)
+        self.currentScore += score!
+        var state:(String,String?)
+        
+        state = self.model!.determineGameState()
+        if state.0 == "end" && state.1 == "win" {
+            self.userWin()
+        } else if (state.0 == "end" && state.1 == "lose") {
+            self.userFail()
+        }
+    }
+    
+    @objc func downAction() {
+        let score = self.model?.performSwipe(direction: MoveDirection.Down)
+        self.currentScore += score!
+        var state:(String,String?)
+        
+        state = self.model!.determineGameState()
+        if state.0 == "end" && state.1 == "win" {
+            self.userWin()
+        } else if (state.0 == "end" && state.1 == "lose") {
+            self.userFail()
+        }
+    }
+    
+    @objc func leftAction() {
+        let score = self.model?.performSwipe(direction: MoveDirection.Left)
+        self.currentScore += score!
+        var state:(String,String?)
+        
+        state = self.model!.determineGameState()
+        if state.0 == "end" && state.1 == "win" {
+            self.userWin()
+        } else if (state.0 == "end" && state.1 == "lose") {
+            self.userFail()
+        }
+    }
+    
+    @objc func rightAction() {
+        let score = self.model?.performSwipe(direction: MoveDirection.Right)
+        self.currentScore += score!
+        var state:(String,String?)
+      
+        state = self.model!.determineGameState()
+        if state.0 == "end" && state.1 == "win" {
+            self.userWin()
+        } else if (state.0 == "end" && state.1 == "lose") {
+            self.userFail()
         }
     }
 }

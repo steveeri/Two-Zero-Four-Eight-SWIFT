@@ -10,7 +10,7 @@ import UIKit
 
 class MainController: UIViewController {
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,9 +21,9 @@ class MainController: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func quitGameTapped(_ sender: Any) {
+    @IBAction func quitGameTapped(_ sender: SSRoundedButton) {
         //print(sender.currentTitle)
-        UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)        
+        UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
     }
     
     override func didReceiveMemoryWarning() {

@@ -1,8 +1,34 @@
-import Foundation
+//
+//  TwoZeroFourEight.swift
+//  TwoZeroFourEight
+//
+//  Created by Steve Richards on 26/06/2018.
+//  Copyright © 2018 Steve Richards. All rights reserved.
+//
 
+import Foundation
+import UIKit
 
 public enum GameMoves : String {
     case UP,DOWN,LEFT,RIGHT
+}
+
+public class GameColours {
+    static let gameBacking   = UIColor(red: 188, green: 173, blue: 162, alpha: 1)
+    static let tile0         = UIColor(red: 204, green: 192, blue: 180, alpha: 1)
+    static let tile2         = UIColor(red: 238, green: 228, blue: 218, alpha: 1)
+    static let tile4         = UIColor(red: 236, green: 224, blue: 200, alpha: 1)
+    static let tile8         = UIColor(red: 242, green: 177, blue: 121, alpha: 1)
+    static let tile16        = UIColor(red: 236, green: 141, blue: 83, alpha: 1)
+    static let tile32        = UIColor(red: 245, green: 124, blue: 95, alpha: 1)
+    static let tile64        = UIColor(red: 233, green: 89, blue: 55, alpha: 1)
+    static let tile128       = UIColor(red: 243, green: 217, blue: 107, alpha: 1)
+    static let tile256       = UIColor(red: 241, green: 208, blue: 75, alpha: 1)
+    static let tile512       = UIColor(red: 228, green: 192, blue: 42, alpha: 1)
+    static let tile1024      = UIColor(red: 227, green: 186, blue: 20, alpha: 1)
+    static let tile2048      = UIColor(red: 230, green: 170, blue: 10, alpha: 1)
+    static let tileTextDark  = UIColor(red: 99, green: 91, blue: 82, alpha: 1)
+    static let tileTextLight = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
 }
 
 
