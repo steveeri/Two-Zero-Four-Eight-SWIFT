@@ -46,6 +46,10 @@ struct Constants {
     static let WAV_AUDIO = "wav"                    // A WAV FILE
     static let AUDIO_SUBDIRECTORY = "sound.assets/"
 
+    // Images
+    static let SOUND_ON_IMG = #imageLiteral(resourceName: "sound_on")
+    static let SOUND_OFF_IMG = #imageLiteral(resourceName: "sound_off")
+
     // All the tile colours
     static let GAME_BOARD_COLOUR = UIColor(red: 187.0/255, green: 173.0/255, blue: 160.0/255, alpha: 1)
     static let TILE_BG_COLOUR    = UIColor(red: 204.0/255, green: 192.0/255, blue: 179.0/255, alpha: 1)

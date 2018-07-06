@@ -12,8 +12,23 @@ import UIKit
 
 class GameViewController: UIViewController, GameEngineProtocol,TileViewDataSource {
 
-
-    @IBOutlet weak var scoreLabel: SSRoundedLabel!
+    var gameEngine: GameEngine?
+    var displayHighScoreMsg = true
+    var audioPlayer = AudioPlayerHelper()  // use default setting.
+    var soundOn = true
+   
+    @IBOutlet weak var soundButton: UIButton!
+    
+    @IBAction func soundTapped(_ sender: UIButton) {
+        if (soundOn) {
+            soundOn = false
+            soundButton.setBackgroundImage(Constants.SOUND_OFF_IMG, for: .normal)
+        } else {
+            soundOn = true
+            soundButton.setBackgroundImage(Constants.SOUND_ON_IMG, for: .normal)
+        }
+    }
+    
   
     @IBAction func quitTapped(_ sender: SSRoundedButton) {
         // Just check to see if the high score needs to be updates.
@@ -36,15 +51,13 @@ class GameViewController: UIViewController, GameEngineProtocol,TileViewDataSourc
         }
     }
     
+    @IBOutlet weak var scoreLabel: SSRoundedLabel!
+    
     @IBOutlet weak var gamePanel: GamePanelView! {
         didSet {
             gamePanel.datasource = self
         }
     }
-    
-    var gameEngine: GameEngine?
-    var displayHighScoreMsg = true
-    var audioPlayer = AudioPlayerHelper()  // use default setting.
     
     //record current score
     var currentScore = 0 {
@@ -135,7 +148,7 @@ class GameViewController: UIViewController, GameEngineProtocol,TileViewDataSourc
             if currentScore > highestScore && highestScore > 100 {
                 displayHighScoreMsg = false
                 ToastHelper.showPositiveMessage(message: Constants.NEW_HIGH_SCORE)
-                audioPlayer.playSound(filename: Constants.HORRAY_AUDIO_FN)
+                if soundOn { audioPlayer.playSound(filename: Constants.HORRAY_AUDIO_FN) }
             }
         }
     }
@@ -144,14 +157,14 @@ class GameViewController: UIViewController, GameEngineProtocol,TileViewDataSourc
         saveHighestScore()
         // pop up an alert to reminder the user that you have won the game
         ToastHelper.showPositiveMessage(message: Constants.WINNER)
-        audioPlayer.playSound(filename: Constants.HORRAY_AUDIO_FN)
+        if soundOn { audioPlayer.playSound(filename: Constants.HORRAY_AUDIO_FN) }
     }
 
     
     func userFail() {
         saveHighestScore()
         ToastHelper.showNegativeMessage(message: Constants.NO_MORE_MOVES)
-        audioPlayer.playSound(filename: Constants.SAD_AUDIO_FN)
+        if soundOn { audioPlayer.playSound(filename: Constants.SAD_AUDIO_FN) }
     }
     
     

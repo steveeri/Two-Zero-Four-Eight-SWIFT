@@ -18,6 +18,7 @@
 		AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */; };
 		AA23DD4E20E0CF1300313CAC /* TwoZeroFourEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */; };
 		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
+		AA29E57220EF14AB009CE3C2 /* sound.assets in Resources */ = {isa = PBXBuildFile; fileRef = AA29E57120EF14AA009CE3C2 /* sound.assets */; };
 		AA2F716520EE301C00036C23 /* game-with-mesg2-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F715D20EE301900036C23 /* game-with-mesg2-port-2048.png */; };
 		AA2F716720EE301C00036C23 /* game-main-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F715F20EE301A00036C23 /* game-main-port-2048.png */; };
 		AA2F716820EE301C00036C23 /* game-main-land-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716020EE301A00036C23 /* game-main-land-2048.png */; };
@@ -30,16 +31,11 @@
 		AA2F717320EE347C00036C23 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717220EE347C00036C23 /* TileView.swift */; };
 		AA2F717520EE3DD100036C23 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717420EE3DD000036C23 /* GameEngine.swift */; };
 		AA2F717720EE5A7600036C23 /* AudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717620EE5A7600036C23 /* AudioPlayerHelper.swift */; };
-		AA2F718020EE611B00036C23 /* sound.assets in Resources */ = {isa = PBXBuildFile; fileRef = AA2F717F20EE611A00036C23 /* sound.assets */; };
-		AA2F718320EE749200036C23 /* cheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA2F718120EE749200036C23 /* cheer.mp3 */; };
-		AA2F718420EE749200036C23 /* negative-beeps.wav in Resources */ = {isa = PBXBuildFile; fileRef = AA2F718220EE749200036C23 /* negative-beeps.wav */; };
 		AA3057A820ED003D008897C9 /* CreateTileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3057A720ED003D008897C9 /* CreateTileImage.swift */; };
 		AA36054820EE116400A6F470 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA36054620EE116300A6F470 /* Game.storyboard */; };
 		AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81B57C20E4EF33006DF1E9 /* MainController.swift */; };
-		AACDF42C20E7804500B939E7 /* summerland-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AACDF42B20E7804500B939E7 /* summerland-logo.png */; };
 		AAD6E2F420EA0EAC00780B00 /* ToastHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */; };
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
-		AAFF906820E3779A00125B2F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFF906720E3779A00125B2F /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +65,7 @@
 		AA23DD4F20E0CF1300313CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA23DD5820E0E6C000313CAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEight.swift; sourceTree = "<group>"; };
+		AA29E57120EF14AA009CE3C2 /* sound.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound.assets; sourceTree = "<group>"; };
 		AA2F715D20EE301900036C23 /* game-with-mesg2-port-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-with-mesg2-port-2048.png"; sourceTree = "<group>"; };
 		AA2F715F20EE301A00036C23 /* game-main-port-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-main-port-2048.png"; sourceTree = "<group>"; };
 		AA2F716020EE301A00036C23 /* game-main-land-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-main-land-2048.png"; sourceTree = "<group>"; };
@@ -81,16 +78,11 @@
 		AA2F717220EE347C00036C23 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		AA2F717420EE3DD000036C23 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		AA2F717620EE5A7600036C23 /* AudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerHelper.swift; sourceTree = "<group>"; };
-		AA2F717F20EE611A00036C23 /* sound.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sound.assets; path = TwoZeroFourEight/sound.assets; sourceTree = SOURCE_ROOT; };
-		AA2F718120EE749200036C23 /* cheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cheer.mp3; path = TwoZeroFourEight/sound.assets/cheer.mp3; sourceTree = "<group>"; };
-		AA2F718220EE749200036C23 /* negative-beeps.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "negative-beeps.wav"; path = "TwoZeroFourEight/sound.assets/negative-beeps.wav"; sourceTree = "<group>"; };
 		AA3057A720ED003D008897C9 /* CreateTileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTileImage.swift; sourceTree = "<group>"; };
 		AA36054720EE116300A6F470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		AA81B57C20E4EF33006DF1E9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
-		AACDF42B20E7804500B939E7 /* summerland-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "summerland-logo.png"; path = "art.scnassets/summerland-logo.png"; sourceTree = "<group>"; };
 		AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastHelper.swift; sourceTree = "<group>"; };
 		AAF75BB720E25F8200433928 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		AAFF906720E3779A00125B2F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		AAFF906D20E3C48000125B2F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -140,8 +132,6 @@
 				AA2F716D20EE305100036C23 /* screenshots */,
 				AAFF906D20E3C48000125B2F /* .gitignore */,
 				AA23DD5820E0E6C000313CAC /* README.md */,
-				AA2F718120EE749200036C23 /* cheer.mp3 */,
-				AA2F718220EE749200036C23 /* negative-beeps.wav */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,13 +152,11 @@
 				AAF75BB720E25F8200433928 /* GameViewController.swift */,
 				AA067EF020EDFFC1001E0A99 /* Game engine */,
 				AA23DD3F20E0CF1300313CAC /* Assets.xcassets */,
+				AA29E57120EF14AA009CE3C2 /* sound.assets */,
 				AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */,
 				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
 				AA36054620EE116300A6F470 /* Game.storyboard */,
-				AACDF42B20E7804500B939E7 /* summerland-logo.png */,
-				AAFF906720E3779A00125B2F /* art.scnassets */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
-				AA2F717F20EE611A00036C23 /* sound.assets */,
 			);
 			path = TwoZeroFourEight;
 			sourceTree = "<group>";
@@ -279,22 +267,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACDF42C20E7804500B939E7 /* summerland-logo.png in Resources */,
 				AA2F716B20EE301C00036C23 /* game-port-2048.png in Resources */,
+				AA29E57220EF14AB009CE3C2 /* sound.assets in Resources */,
 				AA2F716C20EE301C00036C23 /* game-land-2048.png in Resources */,
 				AA2F716720EE301C00036C23 /* game-main-port-2048.png in Resources */,
 				AA36054820EE116400A6F470 /* Game.storyboard in Resources */,
 				AA2F716F20EE326600036C23 /* game-app-icon-port-2048.png in Resources */,
 				AA2F716820EE301C00036C23 /* game-main-land-2048.png in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,
-				AAFF906820E3779A00125B2F /* art.scnassets in Resources */,
-				AA2F718020EE611B00036C23 /* sound.assets in Resources */,
 				AA2F716920EE301C00036C23 /* game-with-mesg-land-2048.png in Resources */,
 				AA2F716A20EE301C00036C23 /* game-with-mesg-port-2048.png in Resources */,
 				AA2F716520EE301C00036C23 /* game-with-mesg2-port-2048.png in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
-				AA2F718420EE749200036C23 /* negative-beeps.wav in Resources */,
-				AA2F718320EE749200036C23 /* cheer.mp3 in Resources */,
 				AA23DD3E20E0CF1300313CAC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
