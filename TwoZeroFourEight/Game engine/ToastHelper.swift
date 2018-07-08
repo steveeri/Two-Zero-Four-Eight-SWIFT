@@ -11,7 +11,7 @@ import UIKit
 
 class ToastHelper {
     
-    class private func showAlert(backgroundColor: UIColor, textColor:UIColor, message:String) {
+    class private func showAlert(backgroundColor: UIColor, textColor: UIColor, message: String) {
         
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let label = UILabel(frame: CGRect.zero)
@@ -49,7 +49,7 @@ class ToastHelper {
             animations: animations1,
             completion:
                 { (value: Bool) in UIView.animate(
-                    withDuration:2.0,
+                    withDuration: 2.0,
                     delay: 2.0,
                     usingSpringWithDamping: 0.5,
                     initialSpringVelocity: 0.1,
@@ -59,14 +59,14 @@ class ToastHelper {
             )
     }
     
-    class func showMessage(_ bgCol : UIColor = UIColor.green, _ txtCol : UIColor = UIColor.white, _ message: String) {
+    class func showMessage(_ bgCol: UIColor = UIColor.green, _ txtCol: UIColor = UIColor.white, _ message: String) {
         showAlert(backgroundColor: bgCol, textColor: txtCol, message: message)
     }
 
-    class func showPositiveMessage(message:String) {
+    class func showPositiveMessage(message: String) {
         showAlert(backgroundColor: UIColor.green, textColor: UIColor.black, message: message)
     }
-    class func showNegativeMessage(message:String) {
+    class func showNegativeMessage(message: String) {
         showAlert(backgroundColor: UIColor.red, textColor: UIColor.white, message: message)
     }
 }

@@ -12,24 +12,32 @@ import UIKit
 struct Constants {
     
     // STD message strings EN
-    static let NO_MORE_MOVES = "Sorry. No more moves possible."
+    static let NO_MORE_MOVES = "Sorry. No more moves possible. Try Undo?"
+    static let NO_MORE_UNDO = "Sorry. No undo's available. Undo's are limited to 5!"
     static let NEW_HIGH_SCORE = "Oh YES. New PB reached."
     static let WINNER = "AWESOME!, you have won the game. Keep playing!!!"
-    
+
+    // Game specific values
+    static let WIN_TARGET = 2048
+    static let EMPTY_TILE_VAL = 0
+    static let MAX_PREVIOUS_MOVES = 5
+    static let PB_MESG_THRESHOLD = 100
+
     // Board specifics
     static let DIMENSION = 4
-    static let THRESHHOLD = 2048
+    static let TILE_CNT = 16
     static let TILE_WIDTH = 65.5
     static let TILE_PADDING = 8.0
     static let BOARD_CORNER_RADIUS = 2.0
     static let TILE_CORNER_RADIUS = 5
     
-    // Animation duration
-    static let ZERO_DURATION   : TimeInterval = 0.00
-    static let QUICK_DURATION  : TimeInterval = 0.09
-    static let NORMAL_DURATION : TimeInterval = 0.25
-    static let SLOW_DURATION   : TimeInterval = 0.45
-    static let LONG_DURATION   : TimeInterval = 0.60
+    // Animation duration in seconds
+    static let ZERO_DURATION   : TimeInterval  = 0.00
+    static let QUICK_DURATION  : TimeInterval  = 0.09
+    static let NORMAL_DURATION : TimeInterval  = 0.25
+    static let SLOW_DURATION   : TimeInterval  = 0.45
+    static let LONG_DURATION   : TimeInterval  = 0.60
+    static let PAUSE_DURATION   : TimeInterval = 1.00
 
     // Fonts for various occasions
     static let SMALL_NUMBER_FONTS = UIFont(name: "HelveticaNeue-Bold", size: 38)

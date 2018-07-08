@@ -9,23 +9,25 @@
 import Foundation
 
 
+// Required protocol of delegate using this game engine
 protocol GameEngineProtocol {
-    func updateTileValue(_: Transitions, position: (Int,Int))
-    func swapTilePositions(tileA A: (Int, Int), tileB B:(Int, Int))
+    func updateTileValue(_ moves: GameEngine.Transition)
     func userPB()
     func userWin()
     func userFail()
 }
 
-enum MoveDirection {
+
+// Allawable game moves
+enum GameMoves {
     case Up
     case Down
     case Left
     case Right
 }
 
-
-enum Transitions {
+// Allowable tile movement sequences
+enum TileMoveType {
     case Add
     case Slide
     case Merge
@@ -33,293 +35,406 @@ enum Transitions {
     case Reset
 }
 
-class GameEngine {
+
+// The core of the 2048 game logic
+// Game board moves are tracked via the compilation of transitions involved in a tile movement.
+// The game engine uses constants values found in the Constants.swift class
+public class GameEngine {
     
-    let dimension: Int
-    let threshold: Int
-    typealias TileObject = Int
-    var gameboard: [[TileObject?]] = Array(repeating: Array(repeating: nil, count: Constants.DIMENSION), count: Constants.DIMENSION)
+    var gameOver = false
+    var score = 0, previousHighScore = 0
+    private var numEmpty = Constants.TILE_CNT
+    private var maxTile = Constants.EMPTY_TILE_VAL
+
+    private var previousMoves = [GameBoardRecord]()
+    private var transitions = [Transition]()
+    private var tiles = [Int]()
+    
+    private let gridCount = Constants.TILE_CNT
+    private let rowCnt = Constants.DIMENSION
+    private let colCnt = Constants.DIMENSION
+    private let blankTile = Constants.EMPTY_TILE_VAL
+
+    // callback delegate to control rendering of the game
     let delegate: GameEngineProtocol
     
+    
     // Constructor
-    init(dimension: Int, threshold: Int, delegate: GameEngineProtocol) {
-        self.dimension = dimension
-        self.threshold = threshold
+    init(delegate: GameEngineProtocol) {
         self.delegate = delegate
     }
     
     
-    func slideTiles(floor f:(Int, Int), ceiling c: (Int, Int)) -> Bool {
+    // Reset the playing board, and generate rendering transition records
+    func newGame(newHighScore: Int) {
+        self.previousHighScore = newHighScore
+        self.numEmpty = Constants.TILE_CNT
+        self.maxTile = Constants.EMPTY_TILE_VAL
+        self.gameOver = false
+        self.score = 0
+        
+        self.previousMoves = [GameBoardRecord]()
+        self.transitions = [Transition]()
+        self.tiles = [Int]()
+        
+        for i in 0..<gridCount {
+            tiles.insert(Constants.EMPTY_TILE_VAL, at: 0)
+            self.transitions.append(Transition(action: TileMoveType.Reset, value: Constants.EMPTY_TILE_VAL, location: i))
+        }
+        _ = self.addNewTile(2)
+        _ = self.addNewTile(2)
+        
+        self.previousMoves.insert(getGameBoardRecord(), at: 0)
+    }
+    
+    // RePlot the game board to an earlier time.
+    func replotBoard() {
+        transitions = [Transition]()
+        for i in 0..<gridCount {
+            self.transitions.append(Transition(action: TileMoveType.Reset, value: tiles[i], location: i))
+        }
+        self.applyGameMoves()
+    }
+    
+    // Create and return a current game board status record object
+    private func getGameBoardRecord() -> GameBoardRecord {
+        return GameBoardRecord(tiles: tiles, score: score, numEmpty: numEmpty, gameOver: gameOver, maxTile: maxTile)
+    }
+    
+    public func acheivedTarget() -> Bool {
+        return maxTile >= Constants.WIN_TARGET
+    }
+    
+    public func getTileValue(at: Int) -> Int {
+        if at >= 0 && at < gridCount {
+            return tiles[at]
+        }
+        return 0
+    }
+    
+    internal func addNewTile(_ seedValue: Int = -1) -> Bool {
+        if (numEmpty == 0) { return false }
+        
+        var value : Int = 2
+        
+        if (seedValue < 2 || seedValue > 4) {
+            // Randomly select 4 or 2
+            let ratioSplit = Int(100 * Constants.RANDOM_RATIO)
+            let sample = Int(arc4random()) % 100
+            if(sample >= ratioSplit) { value = 4 } else { value = 2 }
+        } else {
+            value = seedValue
+        }
+        
+        let pos = Int(arc4random_uniform(UInt32(numEmpty)))
+        var blanksFound = 0
+        
+        for i in 0..<gridCount {
+            if (tiles[i] == blankTile) {
+                if (blanksFound == pos) {
+                    tiles[i] = value
+                    if (value > maxTile) { maxTile = value }
+                    numEmpty -= 1
+                    transitions.append(Transition(action: TileMoveType.Add, value: value, location: i))
+                    return true
+                }
+                blanksFound += 1
+            }
+        }
+        return false
+    }
+    
+    func hasMovesRemaining() -> Bool {
+        
+        if (numEmpty > 0) { return true }
+        
+        // check left-right for compact moves remaining.
+        var arrLimit = gridCount - colCnt
+        for i in 0..<arrLimit {
+            if (tiles[i] == tiles[i + colCnt]) { return true }
+        }
+        
+        // check up-down for compact moves remaining.
+        arrLimit = gridCount - 1
+        for i in 0..<arrLimit {
+            if ((i + 1) % rowCnt > 0) {
+                if (tiles[i] == tiles[i + 1]) { return true }
+            }
+        }
+        return false
+    }
+    
+    // TODO not sliding X X 0 0 sequence
+    private func slideTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
         
         var moved = false
+        let tmpArr : [Int] = [index1,index2,index3,index4]
         
-        if f.0 == c.0 {
-            var inc = 0
-            if f.1 > c.1 { inc = -1 } else { inc = 1 }
-            
-            var emptyBefore = false
-            
-            for y in stride(from: f.1, to: c.1+inc, by: inc) {
-                if self.gameboard[f.0][y] == nil {
-                    emptyBefore = true
-                    continue
-                }
-                if emptyBefore && self.gameboard[f.0][y] != nil {
-                    moved = true
-                    var yy = y
-                    
-                    repeat{
-                        swapTile(tileA: (f.0,yy-inc), TileB: (f.0, yy))
-                        yy -= inc
-                    } while(validPosition(position: (f.0, yy-inc)) && (self.gameboard[f.0][yy-inc]) == nil)
-                }
-            }
-        } else {
-            var inc:Int
-            if f.0 > c.0 { inc = -1 } else { inc = 1 }
-            
-            var emptyBefore = false
-            let start = f.0
-            let end = c.0
-            for x in stride(from: start, to: end+inc, by: inc) {
-                if self.gameboard[x][f.1] == nil{
-                    emptyBefore = true
-                    continue
-                }
-                
-                if emptyBefore && self.gameboard[x][f.1] != nil {
-                    moved = true
-                    var xx = x
-                    
-                    repeat {
-                        swapTile(tileA: (xx-inc,f.1), TileB: (xx, f.1))
-                        xx -= inc
-                    } while(validPosition(position: (xx-inc, f.1)) && self.gameboard[xx-inc][f.1] == nil)
-                }
+        // Do we have some sliding to do, or not?
+        var es = 0  // empty spot index
+        for j in 0..<tmpArr.count {
+            if (tiles[tmpArr[es]] != blankTile) {
+                es += 1
+                continue
+            } else if (tiles[tmpArr[j]] == blankTile) {
+                continue
+            } else {
+                // Otherwise we have a slide condition
+                tiles[tmpArr[es]] = tiles[tmpArr[j]]
+                tiles[tmpArr[j]] = blankTile
+                transitions.append(Transition(action: TileMoveType.Slide, value: tiles[tmpArr[es]], location: tmpArr[es], oldLocation: tmpArr[j]))
+                moved = true
+                es += 1
             }
         }
         return moved
     }
     
-    
-    func swapTile(tileA A:(Int, Int), TileB B:(Int, Int)) {
-        assert(validPosition(position: A) == true && validPosition(position: B) == true)
-        let (Ax,Ay) = A
-        let (Bx,By) = B
-        let valueA = self.gameboard[Ax][Ay]
-        self.gameboard[Ax][Ay] = self.gameboard[Bx][By]
-        delegate.updateTileValue(Transitions.Slide, position: (Ax, Ay))
-        self.gameboard[Bx][By] = valueA
-        delegate.updateTileValue(Transitions.Slide, position: (Bx, By))
+    private func slideLeft() -> Bool {
+        let a = slideTileRowOrColumn(0, 4, 8, 12)
+        let b = slideTileRowOrColumn(1, 5, 9, 13)
+        let c = slideTileRowOrColumn(2, 6, 10, 14)
+        let d = slideTileRowOrColumn(3, 7, 11, 15)
+        return (a || b || c || d)
     }
     
+    private func slideRight() -> Bool {
+        let a = slideTileRowOrColumn(12, 8, 4, 0)
+        let b = slideTileRowOrColumn(13, 9, 5, 1)
+        let c = slideTileRowOrColumn(14, 10, 6, 2)
+        let d = slideTileRowOrColumn(15, 11, 7, 3)
+        return (a || b || c || d)
+    }
+    
+    private func slideUp() -> Bool {
+        let a = slideTileRowOrColumn(0, 1, 2, 3)
+        let b = slideTileRowOrColumn(4, 5, 6, 7)
+        let c = slideTileRowOrColumn(8, 9, 10, 11)
+        let d = slideTileRowOrColumn(12, 13, 14, 15)
+        return (a || b || c || d)
+    }
+    
+    private func slideDown() -> Bool {
+        let a = slideTileRowOrColumn(3, 2, 1, 0)
+        let b = slideTileRowOrColumn(7, 6, 5, 4)
+        let c = slideTileRowOrColumn(11, 10, 9, 8)
+        let d = slideTileRowOrColumn(15, 14, 13, 12)
+        return (a || b || c || d)
+    }
+    
+    private func compactTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
+        
+        var compacted = false
+        
+        for j in 1..<colCnt {
+            var val1 = blankTile
+            var val2 = blankTile
+            var tmpI = blankTile
+            var tmpJ = blankTile
+            switch (j) {
+            case 1:
+                val1 = tiles[index1]
+                val2 = tiles[index2]
+                tmpI = index1
+                tmpJ = index2
+            case 2:
+                val1 = tiles[index2]
+                val2 = tiles[index3]
+                tmpI = index2
+                tmpJ = index3
+            case 3:
+                val1 = tiles[index3]
+                val2 = tiles[index4]
+                tmpI = index3
+                tmpJ = index4
+            default :
+                break
+            }
+            
+            if (val1 != blankTile && val1 == val2) {
+                tiles[tmpI] = val1 * 2
+                score += tiles[tmpI]
+                if (tiles[tmpI] > maxTile) {
+                    maxTile = tiles[tmpI]
+                }
+                numEmpty += 1
+                tiles[tmpJ] = blankTile
+                compacted = true
+                transitions.append(Transition(action: TileMoveType.Merge, value: tiles[tmpI], location: tmpI, oldLocation: tmpJ))
+            }
+        }
+        return compacted
+    }
+    
+    private func compactLeft() -> Bool {
+        let a = compactTileRowOrColumn(0, 4, 8, 12)
+        let b = compactTileRowOrColumn(1, 5, 9, 13)
+        let c = compactTileRowOrColumn(2, 6, 10, 14)
+        let d = compactTileRowOrColumn(3, 7, 11, 15)
+        return (a || b || c || d)
+    }
+    
+    private func compactRight() -> Bool {
+        let a = compactTileRowOrColumn(12, 8, 4, 0)
+        let b = compactTileRowOrColumn(13, 9, 5, 1)
+        let c = compactTileRowOrColumn(14, 10, 6, 2)
+        let d = compactTileRowOrColumn(15, 11, 7, 3)
+        return (a || b || c || d)
+    }
+    
+    private func compactUp() -> Bool {
+        let a = compactTileRowOrColumn(0, 1, 2, 3)
+        let b = compactTileRowOrColumn(4, 5, 6, 7)
+        let c = compactTileRowOrColumn(8, 9, 10, 11)
+        let d = compactTileRowOrColumn(12, 13, 14, 15)
+        return (a || b || c || d)
+    }
+    
+    private func compactDown() -> Bool {
+        let a = compactTileRowOrColumn(3, 2, 1, 0)
+        let b = compactTileRowOrColumn(7, 6, 5, 4)
+        let c = compactTileRowOrColumn(11, 10, 9, 8)
+        let d = compactTileRowOrColumn(15, 14, 13, 12)
+        return (a || b || c || d)
+    }
+    
+    private func actionMoveLeft() -> Bool {
+        let a = slideLeft()
+        let b = compactLeft()
+        let c = slideLeft()
+        return (a || b || c)
+    }
+    
+    private func actionMoveRight() -> Bool {
+        let a = slideRight()
+        let b = compactRight()
+        let c = slideRight()
+        return (a || b || c)
+    }
+    
+    private func actionMoveUp() -> Bool {
+        let a = slideUp()
+        let b = compactUp()
+        let c = slideUp()
+        return (a || b || c)
+    }
+    
+    private func actionMoveDown() -> Bool {
+        let a = slideDown()
+        let b = compactDown()
+        let c = slideDown()
+        return (a || b || c)
+    }
+    
+    // THIS FUNCTION IS THE MAIN CONTROLLER FOR GAME MOVES
+    // THIS FUNCTION IS THE MAIN CONTROLLER FOR GAME MOVES
+    func actionMove(move : GameMoves) -> Bool {
 
-    func mergeTiles(floor f:(Int, Int), ceiling c: (Int, Int), performAction:Bool) -> (Bool,Int) {
-        var moved = false
-        var  score = 0
+        // Clean the transition record as we are doing a new move action.
+        transitions = [Transition]()
         
-        if f.0 == c.0 {
-            var skiped = false
-            var inc = 0
-            if f.1 > c.1 { inc = -1 } else { inc = 1 }
-            
-            for y in stride(from: f.1, to: c.1, by: inc) {
-                if skiped == true {
-                    skiped = false
-                    continue
-                }
-                if self.gameboard[f.0][y] != nil {
-                    if(self.gameboard[f.0][y] == self.gameboard[f.0][y+inc]) {
-                        moved = true
-                        
-                        if performAction {
-                            skiped = true
-                            //combine the value
-                            let value = self.gameboard[f.0][y]!
-                            self.gameboard[f.0][y]  = 2*value
-                            // USE TO TEST BIG NUMBERS  self.gameboard[f.0][y]  = 1024
-                            score += 2*value
-                            delegate.updateTileValue(Transitions.Merge, position: (f.0,y))
-                            self.gameboard[f.0][y+inc] = nil
-                            delegate.updateTileValue(Transitions.Clear, position: (f.0, y+inc))
-
-                        } else { return (moved,score) }
-                    }
-                }
-            }
-        } else {
-            var inc = 0
-            var skiped = false
-            if f.0 > c.0 { inc = -1 } else { inc = 1 }
-            
-            for x in stride(from: f.0, to: c.0, by: inc) {
-                if skiped == true {
-                    skiped = false
-                    continue
-                }
-                if self.gameboard[x][f.1] != nil {
-                    if(self.gameboard[x][f.1] == self.gameboard[x+inc][f.1]) {
-                        moved = true
-                        
-                        if performAction {
-                            skiped = true
-                            
-                            //combine the value
-                            let value = self.gameboard[x][f.1]!
-                            self.gameboard[x][f.1] = 2*value
-                            score += 2*value
-                            delegate.updateTileValue(Transitions.Merge, position: (x,f.1))
-                            self.gameboard[x+inc][f.1] = nil
-                            delegate.updateTileValue(Transitions.Clear, position: (x+inc, f.1))
-                        } else {
-                           return (moved,score)
-                        }
-                    }
-                }
-            }
+        if (!hasMovesRemaining()) {
+            gameOver = true
+            return false
         }
         
-        if moved { _ = slideTiles(floor: f, ceiling: c) }
-        return (moved,score)
+        var changed = false
+        
+        switch move {
+        case .Up:
+            changed = actionMoveUp()
+        case .Down:
+            changed = actionMoveDown()
+        case .Left:
+            changed = actionMoveLeft()
+        case .Right:
+            changed = actionMoveRight()
+        }
+        
+        // If board has changed then add new tile and store previous changes game board
+        if (changed) {
+            changed = addNewTile()
+            if (changed) {
+                self.previousMoves.insert(getGameBoardRecord(), at: 0)  // index zero is current/last board result
+                if (previousMoves.count > Constants.MAX_PREVIOUS_MOVES+1) {
+                    self.previousMoves.remove(at: previousMoves.count-1)
+                }
+            }
+            self.applyGameMoves()
+        }
+        return changed
     }
     
-    
-    func performSwipe(direction: MoveDirection) -> Int {
-        var atLeastOneMove = false
-        var score = 0
-        
-        for i in 0..<self.dimension {
-            var floor:(Int, Int)
-            var ceiling:(Int, Int)
-            switch direction{
-            case .Down:  floor = (self.dimension-1, i); ceiling = (0,i)
-            case .Left:  floor = (i,0);                 ceiling = (i, self.dimension-1)
-            case .Right: floor = (i, self.dimension-1); ceiling = (i, 0)
-            case .Up:    floor = (0, i);                ceiling = (self.dimension-1,i)
-            }
-            
-            atLeastOneMove = slideTiles(floor: floor, ceiling: ceiling) == true || (atLeastOneMove == true)
-            
-            var atLeastOneMove1 = false
-            
-            var currentScore = 0
-            (atLeastOneMove1,currentScore) = mergeTiles(floor:floor, ceiling:ceiling, performAction: true)
-            
-            score += currentScore
-            atLeastOneMove = (atLeastOneMove == true || atLeastOneMove1 == true)
-        }
-        
-        if atLeastOneMove {
-            // Generate a random new tile at a random position
-            insertRandomNewTile()
-        }
-        return score
-    }
-
-    
-    func findEmptySpaces() -> [(Int, Int)] {
-        var open = [(Int, Int)]()
-        
-        for i in 0..<self.dimension {
-            for j in 0..<self.dimension{
-                if self.gameboard[i][j] == nil {
-                    open.append((i,j))
-                }
-            }
-        }
-        return open
-    }
-    
-    
-    func determineGameState() -> (String, String?) {
-        // Check situation status report following move action
-        //1.(end, win) 2.(end, lose) 3.(continue, nil)
-        
-        let spaces = findEmptySpaces()
-        if spaces.count == 0 {
-            // No spaces left at this stage. Guys we are pretty much done here... can any tiles be merged?
-            var moved = false
-
-            for i in 0..<self.dimension {
-                if mergeTiles(floor: (i, 0), ceiling: (i, self.dimension-1), performAction: false).0 == true {
-                    moved = true
-                    break
-                }
-                
-                if mergeTiles(floor: (i, self.dimension-1), ceiling: (i, 0), performAction: false).0 == true {
-                    moved = true
-                    break
-                }
-                
-                if mergeTiles(floor: (0, i), ceiling: (self.dimension-1, i), performAction: false).0 == true {
-                    moved = true
-                    break
-                }
-                
-                if mergeTiles(floor: (self.dimension-1, i), ceiling: (0, i), performAction: false).0 == true {
-                    moved = true
-                    break
-                }
-            }
-            
-            // Do we proceed or are we finished!
-            if moved == true { return ("continue", nil) } else { return ("end", "lose") }
-            
-        }else {
-            // Check to see if the game is won e.g. tile found is 2048!
-            for i in 0..<self.dimension {
-                for j in 0..<self.dimension {
-                    if (self.gameboard[i][j] != nil && Int(self.gameboard[i][j]!) == self.threshold) {
-                        return ("end", "win")
-                    }
-                }
-            }
-            return ("continue", nil)
+    // Callback to the delegate to render game board changes
+    func applyGameMoves() {
+        for trans in self.transitions {
+            delegate.updateTileValue(trans)
         }
     }
     
-    
-    func insertRandomNewTile() {
-        // Randomly select 4 or 2
-        let separator = Int(100 * Constants.RANDOM_RATIO)
-        let num = Int(arc4random()) % 100
-        var value:Int
-        
-        if(num >= separator) { value = 4 } else { value = 2 }
-        insertNewTile(value: value)
+    // Regress state and move sequences back to previous
+    func goBackOneMove() -> Bool {
+        if (self.previousMoves.count > 1) {
+            let pm = self.previousMoves[1]
+            self.tiles = pm.tiles
+            self.score = pm.score
+            self.numEmpty = pm.numEmpty
+            self.gameOver = pm.gameOver
+            self.maxTile = pm.maxTile
+            self.previousMoves.remove(at: 0)
+            self.replotBoard() // redraw and create transitions for re-rendering the board.
+            return true
+        }
+        return false
     }
     
+    func toString() -> String {
+        var str = "---------\n"
+        str += "|\(tiles[0])|\(tiles[4])|\(tiles[8])|\(tiles[12])|\n"
+        str += "|\(tiles[1])|\(tiles[5])|\(tiles[9])|\(tiles[13])|\n"
+        str += "|\(tiles[2])|\(tiles[6])|\(tiles[10])|\(tiles[14])|\n"
+        str += "|\(tiles[3])|\(tiles[7])|\(tiles[11])|\(tiles[15])|\n"
+        str += "---------"
+        return (str)
+    }
     
-    func insertNewTile(value: Int) {
-        // Find all the open spaces
-        let open = findEmptySpaces()
+    // Tile movement instructions record for the game board renderer
+    class Transition {
         
-        if open.count > 0 {
-            //pick one randomly
-            let size = open.count
-            let index = Int(arc4random()) % size
-            let (x,y) = open[index]
-            
-            //change the value
-            self.gameboard[x][y] = value
-            delegate.updateTileValue(Transitions.Add, position: (x,y))
+        var type: TileMoveType
+        var value = 0
+        var location, oldLocation : Int
+        
+        init(action: TileMoveType, value: Int, location: Int) {
+            type = action
+            self.value = value
+            self.location = location
+            self.oldLocation = -1  // old location not relevant for add and refresh ops
+        }
+        
+        init(action: TileMoveType, value: Int, location: Int, oldLocation: Int = -1) {
+            type = action
+            self.value = value
+            self.location = location
+            self.oldLocation = oldLocation
         }
     }
     
-    
-    func validPosition(position: (Int, Int)) -> Bool {
-        let (x,y) = position
-        return x>=0 && x<self.dimension && y>=0 && y<self.dimension
-    }
-    
-    
-    func resetGamePanel() {
-        for i in 0..<self.dimension {
-            for j in 0..<self.dimension {
-                self.gameboard[i][j] = nil
-                delegate.updateTileValue(Transitions.Clear, position: (i,j))
-            }
+    // Snapshot Object containing the status of previous game moves
+    class GameBoardRecord : NSObject {
+        var tiles : [Int]
+        var score : Int
+        var numEmpty : Int
+        var gameOver : Bool
+        var maxTile : Int
+        
+        init(tiles : [Int], score : Int, numEmpty : Int, gameOver : Bool, maxTile : Int) {
+            self.tiles = tiles
+            self.score = score
+            self.numEmpty = numEmpty
+            self.gameOver = gameOver
+            self.maxTile = maxTile
         }
     }
-    
 }
+

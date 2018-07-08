@@ -9,96 +9,69 @@
 import UIKit
 
 protocol TileViewDataSource : class {
-    func valueForTile(sender:GamePanelView, position p:(Int,Int)) -> Int?
+    func valueForTile(sender: GamePanelView, position: Int) -> Int?
 }
 
 //configure the game board view
-class GamePanelView : SSRoundedUIView {
-    //tiles
-    var tiles:Dictionary<NSIndexPath, TileView> = [:]
-    weak var datasource:TileViewDataSource?
+class GamePanelView: SSRoundedUIView {
     
-    //reset board
+    var tileViews : [TileView?] = Array(repeating: nil, count: Constants.TILE_CNT)
+    weak var datasource: TileViewDataSource?
+    
+    // Reset board tiles
     func resetBoard() {
-        for i in 0..<Constants.DIMENSION {
-            for j in 0..<Constants.DIMENSION {
-                let pos = NSIndexPath(row: j, section: i)
-                tiles[pos]?.value = nil
+        for tile in tileViews {
+            if (tile != nil) {
+            tile!.value = Constants.EMPTY_TILE_VAL
             }
         }
         setNeedsDisplay()
     }
     
+    // Reflective draw function for UIView
     override func draw(_ rect: CGRect) {
+        
         self.backgroundColor = Constants.GAME_BOARD_COLOUR
         self.layer.cornerRadius = CGFloat(Constants.BOARD_CORNER_RADIUS)
         self.layer.masksToBounds = true
         
-        //set up tiles
+        //set up tiles and apply to view
         for row in 0..<Constants.DIMENSION {
             for column in 0..<Constants.DIMENSION {
-                //create a new tile view
-                let x = Double(column+1)*Constants.TILE_PADDING + Double(column)*Constants.TILE_WIDTH
-                let y = Double(row + 1)*Constants.TILE_PADDING + Double(row)*Constants.TILE_WIDTH
+                let arrIdx = (row % Constants.DIMENSION) + (column * Constants.DIMENSION)
+                let x = Double(column+1) * Constants.TILE_PADDING + Double(column) * Constants.TILE_WIDTH
+                let y = Double(row+1) * Constants.TILE_PADDING + Double(row) * Constants.TILE_WIDTH
                 let tile = TileView(frame: CGRect(x: x, y: y, width: Constants.TILE_WIDTH, height: Constants.TILE_WIDTH))
-                tile.value = datasource?.valueForTile(sender: self, position: (row, column))
+                tile.value = datasource?.valueForTile(sender: self, position: arrIdx)
+                tileViews[arrIdx] = tile
                 self.addSubview(tile)
-                let position = NSIndexPath(row: column, section: row)
-                tiles[position] = tile
+                //print(tileViews)
             }
         }
     }
     
-    func swapTilePositions(TileA A: (Int, Int), TileB B:(Int, Int)) {
-        let (x1,y1) = A
-        let (x2,y2) = B
-        assert(x1 == x2 || y1 == y2)
+    // Take receiving movement record and apply to affected TextViews
+    func applyTileMove (_ transition: GameEngine.Transition) {
         
-        let pos1 = NSIndexPath(row: y1, section: x1)
-        let pos2 = NSIndexPath(row: y2, section: x2)
-        let tile1 = tiles[pos1]
-        let tile2 = tiles[pos2]
+        let val = transition.value
+        let loc = transition.location
+        let oldLoc = transition.oldLocation
         
-        UIView.animate(withDuration: Constants.QUICK_DURATION, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
-            let f1 = tile1?.frame
-            let label1 = tile1?.numberLabel
-            let value1 = tile1?.value
-            
-            tile1?.frame = (tile2?.frame)!
-            tile1?.numberLabel = tile2?.numberLabel
-            tile1?.value = tile2?.value
-            
-            tile2?.frame = f1!
-            tile2?.numberLabel = label1
-            tile2?.value = value1
-            }, completion: nil)
-    }
-    
-    
-    func resetTile(_ transition: Transitions, Position p:(Int, Int)) {
-        let (i,j) = p
-        let pos = NSIndexPath(row: j, section: i)
-        let tile = self.tiles[pos]
-
-        var timeDuration : TimeInterval
-        
-        switch transition {
-            case .Add:
-                timeDuration = Constants.LONG_DURATION
-            case .Merge:
-                timeDuration =  Constants.SLOW_DURATION
-            case .Clear:
-                timeDuration =  Constants.QUICK_DURATION
-            case .Slide:
-                timeDuration =  Constants.NORMAL_DURATION
-            default:
-                timeDuration =  Constants.ZERO_DURATION
-        }
-        
-        tile?.value = self.datasource?.valueForTile(sender: self, position: p)
-        UIView.animate(withDuration: timeDuration) {
-            tile?.value = self.datasource?.valueForTile(sender: self, position: p)
+        switch transition.type {
+        case .Add:
+            UIView.animate(withDuration: Constants.LONG_DURATION) { self.tileViews[loc]!.value = val }
+        case .Merge:
+            UIView.animate(withDuration: Constants.QUICK_DURATION) { self.tileViews[oldLoc]!.value = Constants.EMPTY_TILE_VAL }
+            UIView.animate(withDuration: Constants.SLOW_DURATION) { self.tileViews[loc]!.value = val }
+        case .Clear:
+            UIView.animate(withDuration: Constants.QUICK_DURATION) { self.tileViews[loc]!.value = Constants.EMPTY_TILE_VAL }
+        case .Slide:
+            UIView.animate(withDuration: Constants.QUICK_DURATION) { self.tileViews[oldLoc]!.value = Constants.EMPTY_TILE_VAL }
+            UIView.animate(withDuration: Constants.NORMAL_DURATION) { self.tileViews[loc]!.value = val }
+        case .Reset:
+            self.tileViews[loc]!.value = val
+            //UIView.animate(withDuration: Constants.ZERO_DURATION) { self.tileViews[loc].value = val }
         }
     }
-
 }
+

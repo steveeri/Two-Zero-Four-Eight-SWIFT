@@ -65,7 +65,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="600" verticalHuggingPriority="600" horizontalCompressionResistancePriority="350" verticalCompressionResistancePriority="350" restorationIdentifier="Label stack" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g30-rD-NUV" userLabel="action buttons stack view">
                                                         <rect key="frame" x="78" y="134.5" width="220" height="35"/>
                                                         <subviews>
-                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAM-OI-CFP" userLabel="Quit" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
+                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAM-OI-CFP" userLabel="Undo" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
                                                                 <color key="backgroundColor" red="0.88896757364273071" green="0.43384018540382385" blue="0.21371789276599884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <accessibility key="accessibilityConfiguration">
@@ -75,14 +75,14 @@
                                                                     <constraint firstAttribute="height" constant="35" id="DJ6-sw-FI9" userLabel="height = 50"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
-                                                                <state key="normal" title="Quit">
+                                                                <state key="normal" title="Undo">
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="quitTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="cnp-4i-Cnf"/>
+                                                                    <action selector="undoTapped:" destination="NsI-IM-9CB" eventType="touchUpInside" id="cnp-4i-Cnf"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKC-cR-FOv" customClass="SSRoundedButton" customModule="TwoZeroFourEight" customModuleProvider="target">

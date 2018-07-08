@@ -19,38 +19,35 @@ class TileView: UIView {
     var numberLabel: UILabel?
     
     func setColorForValue(value: Int) -> UIColor {
-        var color: UIColor
-        
         switch value {
-        case 2,4: color = UIColor.black
-        default:  color = UIColor.white
+        case 2,4: return UIColor.black
+        default:  return UIColor.white
         }
-        return color
     }
     
-    
+    // Reflective render call to paint tile
     override func draw(_ rect: CGRect) {
         
         // draw rect
         self.backgroundColor = Constants.TILE_BG_COLOUR
-        self.layer.masksToBounds = true
         self.layer.cornerRadius = CGFloat(Constants.TILE_CORNER_RADIUS)
-        
+        self.layer.masksToBounds = true
+
         numberLabel?.removeFromSuperview()
         numberLabel = nil
         
         let frame = CGRect(x: 0, y: 0, width: Constants.TILE_WIDTH, height: Constants.TILE_WIDTH)
-        //numberLabel = UILabel(frame: CGRect(x: 0, y: 0, width: Constants.tileWidth, height: Constants.tileWidth))
         numberLabel = UILabel()
         UIView.animate(withDuration: Constants.QUICK_DURATION, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
             self.numberLabel?.frame = frame
-            }, completion: nil)
+        }, completion: nil)
+        
         numberLabel!.textAlignment = .center
         numberLabel!.backgroundColor = Constants.TILE_BG_COLOUR
         numberLabel!.layer.masksToBounds = true
         numberLabel!.minimumScaleFactor = 0.5
         numberLabel!.layer.cornerRadius = self.layer.cornerRadius
-        if value == nil {
+        if value == 0 || value == nil {
             numberLabel!.text = ""
             numberLabel!.backgroundColor = Constants.TILE_BG_COLOUR
         } else {
@@ -69,7 +66,7 @@ class TileView: UIView {
         addSubview(numberLabel!)
     }
     
-    
+    // Simple method to assign required colour for tile
     func setBackgroundColorForValue(value: Int) -> UIColor {
         switch value {
         case 2:    return Constants.TILE2_COLOUR
@@ -87,3 +84,4 @@ class TileView: UIView {
         }
     }
 }
+

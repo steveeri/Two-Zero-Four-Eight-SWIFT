@@ -17,8 +17,6 @@
 		AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD3F20E0CF1300313CAC /* Assets.xcassets */; };
 		AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */; };
 		AA23DD4E20E0CF1300313CAC /* TwoZeroFourEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */; };
-		AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */; };
-		AA29E57220EF14AB009CE3C2 /* sound.assets in Resources */ = {isa = PBXBuildFile; fileRef = AA29E57120EF14AA009CE3C2 /* sound.assets */; };
 		AA2F716520EE301C00036C23 /* game-with-mesg2-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F715D20EE301900036C23 /* game-with-mesg2-port-2048.png */; };
 		AA2F716720EE301C00036C23 /* game-main-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F715F20EE301A00036C23 /* game-main-port-2048.png */; };
 		AA2F716820EE301C00036C23 /* game-main-land-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716020EE301A00036C23 /* game-main-land-2048.png */; };
@@ -33,6 +31,9 @@
 		AA2F717720EE5A7600036C23 /* AudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717620EE5A7600036C23 /* AudioPlayerHelper.swift */; };
 		AA3057A820ED003D008897C9 /* CreateTileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3057A720ED003D008897C9 /* CreateTileImage.swift */; };
 		AA36054820EE116400A6F470 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA36054620EE116300A6F470 /* Game.storyboard */; };
+		AA69CF1220F1B05200FC131D /* cheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA69CF0F20F1B05200FC131D /* cheer.mp3 */; };
+		AA69CF1320F1B05200FC131D /* negative-beeps.wav in Resources */ = {isa = PBXBuildFile; fileRef = AA69CF1020F1B05200FC131D /* negative-beeps.wav */; };
+		AA69CF1420F1B05200FC131D /* sound.assets in Resources */ = {isa = PBXBuildFile; fileRef = AA69CF1120F1B05200FC131D /* sound.assets */; };
 		AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81B57C20E4EF33006DF1E9 /* MainController.swift */; };
 		AAD6E2F420EA0EAC00780B00 /* ToastHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */; };
 		AAF75BB820E25F8200433928 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF75BB720E25F8200433928 /* GameViewController.swift */; };
@@ -64,8 +65,6 @@
 		AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEightTests.swift; sourceTree = "<group>"; };
 		AA23DD4F20E0CF1300313CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA23DD5820E0E6C000313CAC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoZeroFourEight.swift; sourceTree = "<group>"; };
-		AA29E57120EF14AA009CE3C2 /* sound.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound.assets; sourceTree = "<group>"; };
 		AA2F715D20EE301900036C23 /* game-with-mesg2-port-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-with-mesg2-port-2048.png"; sourceTree = "<group>"; };
 		AA2F715F20EE301A00036C23 /* game-main-port-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-main-port-2048.png"; sourceTree = "<group>"; };
 		AA2F716020EE301A00036C23 /* game-main-land-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-main-land-2048.png"; sourceTree = "<group>"; };
@@ -80,6 +79,9 @@
 		AA2F717620EE5A7600036C23 /* AudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerHelper.swift; sourceTree = "<group>"; };
 		AA3057A720ED003D008897C9 /* CreateTileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTileImage.swift; sourceTree = "<group>"; };
 		AA36054720EE116300A6F470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
+		AA69CF0F20F1B05200FC131D /* cheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cheer.mp3; path = sound.assets/cheer.mp3; sourceTree = "<group>"; };
+		AA69CF1020F1B05200FC131D /* negative-beeps.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "negative-beeps.wav"; path = "sound.assets/negative-beeps.wav"; sourceTree = "<group>"; };
+		AA69CF1120F1B05200FC131D /* sound.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound.assets; sourceTree = "<group>"; };
 		AA81B57C20E4EF33006DF1E9 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastHelper.swift; sourceTree = "<group>"; };
 		AAF75BB720E25F8200433928 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -112,15 +114,24 @@
 				AA3057A720ED003D008897C9 /* CreateTileImage.swift */,
 				AA067EF220EE01D0001E0A99 /* GamePanelView.swift */,
 				AA2F717420EE3DD000036C23 /* GameEngine.swift */,
-				AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */,
 				AA067EE520EDFF77001E0A99 /* SSRoundedButton.swift */,
 				AA067EE320EDFF74001E0A99 /* SSRoundedLabel.swift */,
 				AA067EE820EDFF7B001E0A99 /* SSRoundedUIView.swift */,
 				AA2F717020EE347300036C23 /* StoredDataUtils.swift */,
 				AA2F717220EE347C00036C23 /* TileView.swift */,
-				AA23DD5A20E0E6FD00313CAC /* TwoZeroFourEight.swift */,
+				AAD6E2F320EA0EAC00780B00 /* ToastHelper.swift */,
 			);
 			path = "Game engine";
+			sourceTree = "<group>";
+		};
+		AA15877220F1B1720006E283 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */,
+				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
+				AA36054620EE116300A6F470 /* Game.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		AA23DD2A20E0CF1200313CAC = {
@@ -152,11 +163,11 @@
 				AAF75BB720E25F8200433928 /* GameViewController.swift */,
 				AA067EF020EDFFC1001E0A99 /* Game engine */,
 				AA23DD3F20E0CF1300313CAC /* Assets.xcassets */,
-				AA29E57120EF14AA009CE3C2 /* sound.assets */,
-				AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */,
-				AA23DD3C20E0CF1300313CAC /* Main.storyboard */,
-				AA36054620EE116300A6F470 /* Game.storyboard */,
+				AA69CF1120F1B05200FC131D /* sound.assets */,
+				AA15877220F1B1720006E283 /* Storyboards */,
 				AA23DD4420E0CF1300313CAC /* Info.plist */,
+				AA69CF0F20F1B05200FC131D /* cheer.mp3 */,
+				AA69CF1020F1B05200FC131D /* negative-beeps.wav */,
 			);
 			path = TwoZeroFourEight;
 			sourceTree = "<group>";
@@ -268,8 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2F716B20EE301C00036C23 /* game-port-2048.png in Resources */,
-				AA29E57220EF14AB009CE3C2 /* sound.assets in Resources */,
+				AA69CF1420F1B05200FC131D /* sound.assets in Resources */,
 				AA2F716C20EE301C00036C23 /* game-land-2048.png in Resources */,
+				AA69CF1220F1B05200FC131D /* cheer.mp3 in Resources */,
 				AA2F716720EE301C00036C23 /* game-main-port-2048.png in Resources */,
 				AA36054820EE116400A6F470 /* Game.storyboard in Resources */,
 				AA2F716F20EE326600036C23 /* game-app-icon-port-2048.png in Resources */,
@@ -280,6 +292,7 @@
 				AA2F716520EE301C00036C23 /* game-with-mesg2-port-2048.png in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
 				AA23DD3E20E0CF1300313CAC /* Main.storyboard in Resources */,
+				AA69CF1320F1B05200FC131D /* negative-beeps.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +316,6 @@
 				AA81B57D20E4EF33006DF1E9 /* MainController.swift in Sources */,
 				AA067EEC20EDFF7C001E0A99 /* SSRoundedButton.swift in Sources */,
 				AAD6E2F420EA0EAC00780B00 /* ToastHelper.swift in Sources */,
-				AA23DD5B20E0E6FD00313CAC /* TwoZeroFourEight.swift in Sources */,
 				AA2F717320EE347C00036C23 /* TileView.swift in Sources */,
 				AA3057A820ED003D008897C9 /* CreateTileImage.swift in Sources */,
 				AA2F717520EE3DD100036C23 /* GameEngine.swift in Sources */,
