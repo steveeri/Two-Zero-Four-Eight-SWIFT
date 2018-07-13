@@ -164,7 +164,6 @@ public class GameEngine {
         return false
     }
     
-    // TODO not sliding X X 0 0 sequence
     private func slideTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
         
         var moved = false
@@ -189,7 +188,29 @@ public class GameEngine {
         }
         return moved
     }
-    
+
+    private func compactTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
+        
+        var compacted = false
+        let tmpArr : [Int] = [index1,index2,index3,index4]
+        
+        for j in 0..<(tmpArr.count-1) {
+            if (tiles[tmpArr[j]] != blankTile && tiles[tmpArr[j]] == tiles[tmpArr[j+1]]) { // we found a matching pair
+                let ctv = tiles[tmpArr[j]] * 2   // = compacted tile value
+                tiles[tmpArr[j]] = ctv
+                tiles[tmpArr[j+1]] = blankTile
+                score += ctv
+                if (ctv > maxTile) {
+                    maxTile = ctv
+                }  // is this the biggest tile # so far
+                transitions.append(Transition(action: TileMoveType.Merge, value: ctv, location: tmpArr[j], oldLocation: tmpArr[j+1]))
+                compacted = true
+                numEmpty += 1
+            }
+        }
+        return compacted
+    }
+
     private func slideLeft() -> Bool {
         let a = slideTileRowOrColumn(0, 4, 8, 12)
         let b = slideTileRowOrColumn(1, 5, 9, 13)
@@ -220,50 +241,6 @@ public class GameEngine {
         let c = slideTileRowOrColumn(11, 10, 9, 8)
         let d = slideTileRowOrColumn(15, 14, 13, 12)
         return (a || b || c || d)
-    }
-    
-    private func compactTileRowOrColumn(_ index1: Int, _ index2: Int, _ index3: Int, _ index4: Int) -> Bool {
-        
-        var compacted = false
-        
-        for j in 1..<colCnt {
-            var val1 = blankTile
-            var val2 = blankTile
-            var tmpI = blankTile
-            var tmpJ = blankTile
-            switch (j) {
-            case 1:
-                val1 = tiles[index1]
-                val2 = tiles[index2]
-                tmpI = index1
-                tmpJ = index2
-            case 2:
-                val1 = tiles[index2]
-                val2 = tiles[index3]
-                tmpI = index2
-                tmpJ = index3
-            case 3:
-                val1 = tiles[index3]
-                val2 = tiles[index4]
-                tmpI = index3
-                tmpJ = index4
-            default :
-                break
-            }
-            
-            if (val1 != blankTile && val1 == val2) {
-                tiles[tmpI] = val1 * 2
-                score += tiles[tmpI]
-                if (tiles[tmpI] > maxTile) {
-                    maxTile = tiles[tmpI]
-                }
-                numEmpty += 1
-                tiles[tmpJ] = blankTile
-                compacted = true
-                transitions.append(Transition(action: TileMoveType.Merge, value: tiles[tmpI], location: tmpI, oldLocation: tmpJ))
-            }
-        }
-        return compacted
     }
     
     private func compactLeft() -> Bool {
@@ -339,26 +316,19 @@ public class GameEngine {
         }
         
         var changed = false
-        
         switch move {
-        case .Up:
-            changed = actionMoveUp()
-        case .Down:
-            changed = actionMoveDown()
-        case .Left:
-            changed = actionMoveLeft()
-        case .Right:
-            changed = actionMoveRight()
+        case .Up:    changed = actionMoveUp()
+        case .Down:  changed = actionMoveDown()
+        case .Left:  changed = actionMoveLeft()
+        case .Right: changed = actionMoveRight()
         }
         
         // If board has changed then add new tile and store previous changes game board
         if (changed) {
-            changed = addNewTile()
-            if (changed) {
-                self.previousMoves.insert(getGameBoardRecord(), at: 0)  // index zero is current/last board result
-                if (previousMoves.count > Constants.MAX_PREVIOUS_MOVES+1) {
-                    self.previousMoves.remove(at: previousMoves.count-1)
-                }
+            _ = addNewTile()
+            self.previousMoves.insert(getGameBoardRecord(), at: 0)  // index zero is current/last board result
+            if (previousMoves.count > Constants.MAX_PREVIOUS_MOVES+1) {
+                self.previousMoves.remove(at: previousMoves.count-1)
             }
             self.applyGameMoves()
         }

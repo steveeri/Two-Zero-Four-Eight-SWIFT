@@ -10,7 +10,7 @@ import AVFoundation
 import UIKit
 
 
-class GameViewController: UIViewController, GameEngineProtocol, TileViewDataSource {
+class GameViewController: UIViewController, GameEngineProtocol, TileViewDataSource,  AVAudioPlayerDelegate {
    
     
     var gameEngine: GameEngine?
@@ -30,7 +30,6 @@ class GameViewController: UIViewController, GameEngineProtocol, TileViewDataSour
         }
     }
     
-  
     @IBAction func undoTapped(_ sender: SSRoundedButton) {
         saveHighestScore()
         if (!gameEngine!.goBackOneMove()) {
@@ -182,21 +181,25 @@ class GameViewController: UIViewController, GameEngineProtocol, TileViewDataSour
     @objc func leftAction()  { moveAction(dir: GameMoves.Left)  }
     @objc func rightAction() { moveAction(dir: GameMoves.Right) }
     
+    var _player : AVAudioPlayer?
+    
     // Common handler for registered swipe actions
     func moveAction(dir: GameMoves) {
-        
-        if (self.gameEngine!.gameOver) {
+
+        if self.gameEngine!.gameOver {
             self.userFail()
             return
         }
         
-        if (self.gameEngine!.actionMove(move: dir)) {
+        if self.gameEngine!.actionMove(move: dir) {
             self.currentScore = gameEngine!.score
-            if (gameEngine!.acheivedTarget()) {
+            if gameEngine!.acheivedTarget() {
                 self.userWin()
             } else {
                 userPB()
             }
+        } else if self.gameEngine!.gameOver {
+            self.userFail()
         }
         //print(gameEngine!.toString())
     }

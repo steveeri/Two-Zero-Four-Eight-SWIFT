@@ -7,8 +7,12 @@
 //
 
 import XCTest
+@testable import TwoZeroFourEight
 
 class TwoZeroFourEightTests: XCTestCase {
+    
+    
+    let gameEngine = GameEngine()
     
     override func setUp() {
         super.setUp()

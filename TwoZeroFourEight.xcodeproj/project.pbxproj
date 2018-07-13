@@ -17,14 +17,6 @@
 		AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD3F20E0CF1300313CAC /* Assets.xcassets */; };
 		AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA23DD4120E0CF1300313CAC /* LaunchScreen.storyboard */; };
 		AA23DD4E20E0CF1300313CAC /* TwoZeroFourEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA23DD4D20E0CF1300313CAC /* TwoZeroFourEightTests.swift */; };
-		AA2F716520EE301C00036C23 /* game-with-mesg2-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F715D20EE301900036C23 /* game-with-mesg2-port-2048.png */; };
-		AA2F716720EE301C00036C23 /* game-main-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F715F20EE301A00036C23 /* game-main-port-2048.png */; };
-		AA2F716820EE301C00036C23 /* game-main-land-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716020EE301A00036C23 /* game-main-land-2048.png */; };
-		AA2F716920EE301C00036C23 /* game-with-mesg-land-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716120EE301A00036C23 /* game-with-mesg-land-2048.png */; };
-		AA2F716A20EE301C00036C23 /* game-with-mesg-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716220EE301B00036C23 /* game-with-mesg-port-2048.png */; };
-		AA2F716B20EE301C00036C23 /* game-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716320EE301B00036C23 /* game-port-2048.png */; };
-		AA2F716C20EE301C00036C23 /* game-land-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716420EE301B00036C23 /* game-land-2048.png */; };
-		AA2F716F20EE326600036C23 /* game-app-icon-port-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2F716E20EE326600036C23 /* game-app-icon-port-2048.png */; };
 		AA2F717120EE347400036C23 /* StoredDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717020EE347300036C23 /* StoredDataUtils.swift */; };
 		AA2F717320EE347C00036C23 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717220EE347C00036C23 /* TileView.swift */; };
 		AA2F717520EE3DD100036C23 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F717420EE3DD000036C23 /* GameEngine.swift */; };
@@ -278,18 +270,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA2F716B20EE301C00036C23 /* game-port-2048.png in Resources */,
 				AA69CF1420F1B05200FC131D /* sound.assets in Resources */,
-				AA2F716C20EE301C00036C23 /* game-land-2048.png in Resources */,
 				AA69CF1220F1B05200FC131D /* cheer.mp3 in Resources */,
-				AA2F716720EE301C00036C23 /* game-main-port-2048.png in Resources */,
 				AA36054820EE116400A6F470 /* Game.storyboard in Resources */,
-				AA2F716F20EE326600036C23 /* game-app-icon-port-2048.png in Resources */,
-				AA2F716820EE301C00036C23 /* game-main-land-2048.png in Resources */,
 				AA23DD4320E0CF1300313CAC /* LaunchScreen.storyboard in Resources */,
-				AA2F716920EE301C00036C23 /* game-with-mesg-land-2048.png in Resources */,
-				AA2F716A20EE301C00036C23 /* game-with-mesg-port-2048.png in Resources */,
-				AA2F716520EE301C00036C23 /* game-with-mesg2-port-2048.png in Resources */,
 				AA23DD4020E0CF1300313CAC /* Assets.xcassets in Resources */,
 				AA23DD3E20E0CF1300313CAC /* Main.storyboard in Resources */,
 				AA69CF1320F1B05200FC131D /* negative-beeps.wav in Resources */,
@@ -483,7 +467,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DMQD835NAX;
 				INFOPLIST_FILE = TwoZeroFourEight/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.summerland.TwoZeroFourEight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,7 +484,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DMQD835NAX;
 				INFOPLIST_FILE = TwoZeroFourEight/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.summerland.TwoZeroFourEight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
